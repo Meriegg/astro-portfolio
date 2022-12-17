@@ -1,0 +1,60 @@
+---
+import Project from "./Project.astro";
+---
+
+<section id="my_work" class="h-auto mt-20 sectionPadding">
+  <div class="w-full flex md:flex-col justify-between items-end gap-2">
+    <h1 class="text-4xl font-semibold tracking-normal leading-[1em]">
+      Here are a few of my projects
+    </h1>
+    <div class="flex-grow h-[1px] bg-text-secondary md:hidden"></div>
+    <a
+      href="#contact_me"
+      class="text-base md:mt-4 text-text-secondary hover:text-text-primary font-bold hover:underline decoration-2 leading-[1em]"
+      >Contact me</a
+    >
+  </div>
+  <div class="mt-20 flex flex-col gap-36">
+    <Project
+      idx={1}
+      description="This website is a demo e-commerce store with a full GraphQL backend and a MongoDB database, but it also allows you to add your own local modifications to the store via the Admin Menu."
+      name="Show Store: E-commerce Demo"
+      technologiesUsed={[
+        "Sass",
+        "GraphQL",
+        "Next.Js",
+        "React.Js",
+        "Node.Js",
+        "MongoDB",
+      ]}
+      sourceHREFs={[
+        {
+          href: "https://github.com/Meriegg/show-store-client",
+          text: "Client Code",
+        },
+        {
+          href: "https://github.com/Meriegg/show-store-backend",
+          text: "Backend Code",
+        },
+      ]}
+      websiteHREF="https://show-store.vercel.app"
+      previewImgAlt="PREVIEW IMAGE"
+      previewImgSrc="public/projectImgs/SHOW_STORE_UI_SHOT.png"
+    />
+    <Project
+      idx={2}
+      description="This is a Terminal-like portfolio website created by me with Next.Js and Scss. You can start by typing `help`, for more info visit the github repo."
+      name="Terminal Portfolio"
+      technologiesUsed={["Next.Js", "React.Js", "Sass", "Typescript"]}
+      sourceHREFs={[
+        {
+          href: "https://github.com/Meriegg/portfolio-terminal",
+          text: "Source Code",
+        },
+      ]}
+      websiteHREF="https://mariodev-terminal.vercel.app/"
+      previewImgAlt="PREVIEW IMAGE"
+      previewImgSrc="public/projectImgs/TERMINAL_UI_SHOT.png"
+    />
+  </div>
+</section>

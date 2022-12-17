@@ -1,0 +1,47 @@
+---
+import GithubLogo from "../../public/icons/logo-github.svg";
+import InstagramLogo from "../../public/icons/logo-instagram.svg";
+import EmailIcon from "../../public/icons/mail.svg";
+import TwitterIcon from "../../public/icons/logo-twitter.svg";
+import {
+  EMAIL_LINK,
+  GITHUB_LINK,
+  INSTAGRAM_LINK,
+  TWITTER_LINK,
+} from "../config";
+
+const links = [
+  {
+    href: GITHUB_LINK,
+    icon: GithubLogo,
+  },
+  {
+    href: INSTAGRAM_LINK,
+    icon: InstagramLogo,
+  },
+  {
+    href: TWITTER_LINK,
+    icon: TwitterIcon,
+  },
+  {
+    href: EMAIL_LINK,
+    icon: EmailIcon,
+  },
+];
+---
+
+<div class="fixed left-12 bottom-16 flex flex-col gap-2 md:left-6">
+  <p class="text-sm font-semibold text-text-secondary">{"<QuickContact />"}</p>
+  <div class="flex gap-3">
+    {
+      links.map((link) => (
+        <a href={link.href} class="quickContactItem" target="_blank">
+          <div
+            class="quickContactItemIcon w-6 h-6"
+            style={`mask: url("${link.icon}"); -webkit-mask: url("${link.icon}");`}
+          />
+        </a>
+      ))
+    }
+  </div>
+</div>

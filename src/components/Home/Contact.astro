@@ -1,0 +1,48 @@
+---
+import ContactCopy from "./ContactCopy";
+import {
+  CONTACT_EMAIL,
+  EMAIL_LINK,
+  GITHUB_LINK,
+  INSTAGRAM_LINK,
+  INSTAGRAM_USERNAME,
+  TWITTER_LINK,
+} from "../../config";
+---
+
+<section id="contact_me" class="sectionPadding mt-[60vh]">
+  <h1 class="text-6xl font-bold tracking-normal">Contact Me</h1>
+
+  <div class="flex flex-col gap-8 mt-12">
+    <ContactCopy
+      client:visible
+      copyText={CONTACT_EMAIL}
+      displayText={CONTACT_EMAIL}
+      visitLink={EMAIL_LINK}
+      label="Email"
+    />
+    <ContactCopy
+      client:visible
+      copyText={INSTAGRAM_LINK}
+      displayText={`@${INSTAGRAM_USERNAME}`}
+      visitLink={INSTAGRAM_LINK}
+      label="Instagram"
+    />
+    <ContactCopy
+      client:visible
+      copyText={GITHUB_LINK}
+      displayText={GITHUB_LINK}
+      visitLink={GITHUB_LINK}
+      opaqueText={"github.com/"}
+      label="Github"
+    />
+    <ContactCopy
+      client:visible
+      copyText={TWITTER_LINK}
+      displayText={TWITTER_LINK}
+      visitLink={TWITTER_LINK}
+      opaqueText={"twitter.com/"}
+      label="Twitter"
+    />
+  </div>
+</section>

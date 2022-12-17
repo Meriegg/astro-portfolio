@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Clash Display";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/ClashDisplay-Bold.otf");
+}
+
+@font-face {
+  font-family: "Clash Display";
+  font-style: normal;
+  font-weight: 600;
+  src: url("fonts/ClashDisplay-Semibold.otf");
+}
+
+@font-face {
+  font-family: "Clash Display";
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/ClashDisplay-Regular.otf");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/FiraCode-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 600;
+  src: url("fonts/FiraCode-SemiBold.ttf");
+}
+
+@layer base {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    scroll-padding: 80px 0;
+    scroll-snap-type: y mandatory;
+  }
+
+  body {
+    @apply bg-main-bg;
+  }
+
+  section {
+    scroll-snap-align: start;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+    font-family: "Clash Display";
+    letter-spacing: 0.04em;
+
+    @apply text-text-primary;
+  }
+}
+
+@layer components {
+  .quickContactItem {
+    .quickContactItemIcon {
+      @apply m-1 bg-text-primary transition duration-300;
+    }
+
+    &::after {
+      content: "";
+
+      @apply transition duration-300 bg-green-accent rounded-full w-full h-full absolute top-0 left-0 -z-10 transform scale-0;
+    }
+
+    &:hover,
+    &:focus {
+      .quickContactItemIcon {
+        @apply bg-dark-contrast;
+      }
+
+      &::after {
+        @apply transform scale-100;
+      }
+    }
+
+    @apply flex justify-center items-center relative;
+  }
+}
+
+@layer utilities {
+  .font-fira {
+    font-family: "Fira Code";
+  }
+
+  .sectionPadding {
+    @apply px-10 sm:px-6;
+  }
+}

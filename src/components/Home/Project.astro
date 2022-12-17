@@ -1,0 +1,77 @@
+---
+import Chip from "../Chip.astro";
+
+interface Props {
+  name: string;
+  description: string;
+  technologiesUsed: string[];
+  sourceHREFs: {
+    text: string;
+    href: string;
+  }[];
+  websiteHREF: string;
+  previewImgSrc: string;
+  previewImgAlt: string;
+  idx: number;
+}
+
+const {
+  description,
+  name,
+  sourceHREFs,
+  technologiesUsed,
+  websiteHREF,
+  idx,
+  previewImgAlt,
+  previewImgSrc,
+} = Astro.props;
+---
+
+<div class="flex flex-wrap gap-12">
+  <img
+    src={previewImgSrc}
+    alt={previewImgAlt}
+    class="h-auto rounded-xl"
+    style="width: min(450px, 100%);"
+  />
+  <div class="flex flex-col gap-9 max-w-[600px]">
+    <div>
+      <p class="text-2xl text-text-secondary">#{idx}</p>
+      <h1 class="text-4xl font-semibold tracking-normal">{name}</h1>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <p class="max-w-[550px] text-text-secondary">{description}</p>
+      <div class="flex flex-wrap gap-3 font-bold">
+        Technologies used: {
+          technologiesUsed.map((technology) => <Chip text={technology} />)
+        }
+      </div>
+    </div>
+
+    <div class="w-fit flex flex-col gap-4">
+      <div class="w-full h-[1px] bg-text-secondary"></div>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href={websiteHREF}
+          target="_blank"
+          class="flex gap-1 font-semibold tracking-normal hover:underline decoration-2 text-lg"
+          >Visit Website
+          <img src="public/icons/pin-sharp.svg" />
+        </a>
+        {
+          sourceHREFs.map((source) => (
+            <a
+              href={source.href}
+              target="_blank"
+              class="flex gap-1 font-semibold tracking-normal hover:underline decoration-2 text-lg"
+            >
+              {source.text}
+              <img src="public/icons/logo-github.svg" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
