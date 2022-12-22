@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import shortenLink from "../../utils/shortenLink";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { useState } from "react";
 
 interface Props {
   copyText: string;
