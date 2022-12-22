@@ -16,6 +16,7 @@ module.exports = {
         "terminal-yellow": "#C19C00",
         "hover-contrast": "rgba(255, 255, 255, 0.2)",
         "opaque-gray": "rgba(255, 255, 255, 0.3)",
+        "terminal-bg": "rgba(0, 0, 0, 0.6)",
       },
       screens: {
         "2xl": { max: "1535px" },

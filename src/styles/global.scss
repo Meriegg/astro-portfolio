@@ -55,6 +55,15 @@
 
   section {
     scroll-snap-align: start;
+    @apply py-20;
+  }
+
+  pre {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
   }
 
   *,
@@ -100,7 +109,34 @@
     font-family: "Fira Code";
   }
 
+  .cli-output {
+    * {
+      @apply font-fira;
+    }
+  }
+
   .sectionPadding {
     @apply px-10 sm:px-6;
+  }
+
+  .custom-scrollbar {
+    // Google-like scrollbar ._.
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
   }
 }
