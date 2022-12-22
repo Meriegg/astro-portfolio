@@ -13,7 +13,7 @@ const CLIWrapper = ({ isOpen, setOpen }: Props) => {
       {createPortal(
         <div
           className={clsx(
-            "fixed top-0 left-0 w-full h-full bg-terminal-bg px-4 flex justify-center items-center",
+            "transition duration-300 fixed top-0 left-0 w-full h-full bg-terminal-bg px-4 flex justify-center items-center",
             isOpen ? "opacity-100 z-30" : "opacity-0 -z-30"
           )}
         >

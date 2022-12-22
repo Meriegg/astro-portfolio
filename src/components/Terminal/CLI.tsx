@@ -1,7 +1,7 @@
 import TerminalInput from "./TerminalInput";
 import commandRunner from "./logic/commandRunner";
 import { COMMAND_OUTPUTS } from "../../constants";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 
 interface Props {
   setOpen: (val: boolean) => void;
@@ -9,6 +9,8 @@ interface Props {
 
 const CLI = ({ setOpen }: Props) => {
   const [commandVal, setCommandVal] = useState("");
+  const [commandHistory, setCommandHistory] = useState<string[]>([""]);
+  const [commandHistoryIdx, setCommandHistoryIdx] = useState(0);
   const terminalRef = useRef<HTMLPreElement | null>(null);
   const terminalContainerRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLDivElement | null>(null);
@@ -19,6 +21,23 @@ const CLI = ({ setOpen }: Props) => {
       !inputRef.current ||
       !terminalContainerRef.current
     ) {
+      return;
+    }
+
+    let tempCommandHistory = [...commandHistory];
+    if (commandVal.trim()) {
+      tempCommandHistory.push(commandVal);
+
+      tempCommandHistory = [
+        "",
+        ...tempCommandHistory.slice(1, tempCommandHistory.length).reverse(),
+      ];
+      setCommandHistory(tempCommandHistory);
+      tempCommandHistory = [];
+    }
+
+    if (commandVal === "exit") {
+      setOpen(false);
       return;
     }
 
@@ -37,6 +56,49 @@ const CLI = ({ setOpen }: Props) => {
     terminalContainerRef.current.scrollTop =
       terminalContainerRef.current.scrollHeight;
   };
+
+  const decreaseHistoryIdx = () => {
+    setCommandHistoryIdx((prevIdx) => prevIdx - 1);
+  };
+
+  const increaseHistoryIdx = () => {
+    setCommandHistoryIdx((prevIdx) => prevIdx + 1);
+  };
+
+  const commandHistoryEventCallback = useCallback((e: KeyboardEvent) => {
+    const arrowUpCode = "ArrowUp";
+    const arrowDownCode = "ArrowDown";
+
+    switch (e.key) {
+      case arrowUpCode:
+        increaseHistoryIdx();
+        break;
+
+      case arrowDownCode:
+        decreaseHistoryIdx();
+        break;
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("keydown", commandHistoryEventCallback);
+
+    return () =>
+      window.removeEventListener("keydown", commandHistoryEventCallback);
+  }, []);
+
+  useEffect(() => {
+    if (commandHistoryIdx <= -1) {
+      setCommandHistoryIdx(0);
+    }
+
+    if (commandHistoryIdx >= commandHistory.length) {
+      setCommandHistoryIdx(commandHistory.length - 1);
+    }
+
+    setCommandVal(commandHistory[commandHistoryIdx]);
+    console.log(commandHistory);
+  }, [commandHistoryIdx]);
 
   useEffect(() => {
     pushCommand(COMMAND_OUTPUTS.credentials, true);

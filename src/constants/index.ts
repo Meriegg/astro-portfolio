@@ -20,6 +20,9 @@ You can start by typing <span class="text-terminal-yellow">help</span>
 
 `;
 
+// TO BE ADDED
+// <span class="text-terminal-yellow">ls</span>: display current directory files
+// <span class="text-terminal-yellow">run [PATH]</span>: runs executable files?!
 export const HELP_COMMAND_OUTPUT = `
 Here is a list of all things you can do:
 
@@ -30,8 +33,6 @@ Here is a list of all things you can do:
     <span class="text-terminal-yellow">clear || cls</span>: clears the terminal 
     <span class="text-terminal-yellow">source</span>: gives you a link for the source code of this website
     <span class="text-terminal-yellow">source --navigate [true || false]</span>: navigates you to the source code of this website
-    <span class="text-terminal-yellow">ls</span>: display current directory files
-    <span class="text-terminal-yellow">run [PATH]</span>: runs executable files?!
     <span class="text-terminal-red">exit</span>: closes the terminal
 
 `;
