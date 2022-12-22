@@ -22,7 +22,7 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
         onChange={(e) => setValue(e.target.value)}
         className="focus:outline-none border-none bg-transparent ml-1 flex-grow"
         onKeyDown={(key) => {
-          if (key.code.toLowerCase() === "enter") {
+          if (key.code.toLowerCase() === "enter" || key.keyCode === 13) {
             pushCommand(value);
             setValue("");
           }

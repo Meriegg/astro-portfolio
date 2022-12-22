@@ -3,7 +3,7 @@ import CLIWrapper from "./CLI-wrapper";
 import { useState } from "react";
 
 const Terminal = () => {
-  const [isTerminalOpen, setIsTerminalOpen] = useState(true);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   return (
     <div>
