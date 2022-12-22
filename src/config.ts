@@ -15,3 +15,5 @@ export const INSTAGRAM_LINK = `https://instagram.com/${INSTAGRAM_USERNAME}`;
 export const GITHUB_LINK = `https://github.com/${GITHUB_USERNAME}`;
 export const TWITTER_LINK = `https://twitter.com/${TWITTER_USERNAME}`;
 export const EMAIL_LINK = `mailto:${CONTACT_EMAIL}`;
+
+export const SOURCE_LINK = "https://github.com/Meriegg/astro-portfolio";

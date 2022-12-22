@@ -1,5 +1,15 @@
 import commandParser from "./commandParser";
-import { Help, About, Credentials, CreateError } from "./commands";
+import {
+  Help,
+  About,
+  Credentials,
+  Clear,
+  CreateError,
+  Contact,
+  NavigateToContact,
+  Source,
+  NavigateToSource,
+} from "./commands";
 
 interface IsValidCheckProps {
   action: string;
@@ -23,6 +33,24 @@ export default (command: string) => {
 
     case isValid({ action: "credentials", argsLen: 0 }, { action, argsLen }):
       return Credentials();
+
+    case isValid({ action: "contact", argsLen: 1 }, { action, argsLen }):
+      return NavigateToContact(args);
+
+    case isValid({ action: "contact", argsLen: 0 }, { action, argsLen }):
+      return Contact();
+
+    case isValid({ action: "source", argsLen: 1 }, { action, argsLen }):
+      return NavigateToSource(args);
+
+    case isValid({ action: "source", argsLen: 0 }, { action, argsLen }):
+      return Source();
+
+    case isValid({ action: "clear", argsLen: 0 }, { action, argsLen }):
+      return Clear();
+
+    case isValid({ action: "cls", argsLen: 0 }, { action, argsLen }):
+      return Clear();
 
     default:
       return CreateError(

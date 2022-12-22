@@ -13,7 +13,7 @@ const CLI = ({ setOpen }: Props) => {
   const terminalContainerRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLDivElement | null>(null);
 
-  const pushCommand = (output?: string) => {
+  const pushCommand = (output: string, plainOutput?: boolean) => {
     if (
       !terminalRef.current ||
       !inputRef.current ||
@@ -24,12 +24,14 @@ const CLI = ({ setOpen }: Props) => {
 
     const commandOutput = commandRunner(commandVal);
 
-    const clonedInputRef = inputRef.current.cloneNode(true);
-    terminalRef.current.appendChild(clonedInputRef);
+    if (!plainOutput && commandVal !== "clear" && commandVal !== "cls") {
+      const clonedInputRef = inputRef.current.cloneNode(true);
+      terminalRef.current.appendChild(clonedInputRef);
+    }
 
     const elem = document.createElement("pre");
     elem.className = "font-fira";
-    elem.innerHTML = output || commandOutput;
+    elem.innerHTML = plainOutput ? output : commandOutput;
 
     terminalRef.current.appendChild(elem);
     terminalContainerRef.current.scrollTop =
@@ -37,7 +39,7 @@ const CLI = ({ setOpen }: Props) => {
   };
 
   useEffect(() => {
-    pushCommand(COMMAND_OUTPUTS.credentials);
+    pushCommand(COMMAND_OUTPUTS.credentials, true);
   }, []);
 
   return (
@@ -60,7 +62,7 @@ const CLI = ({ setOpen }: Props) => {
         ref={terminalContainerRef}
         className="h-auto bg-terminal-bg flex flex-col px-5 py-2 overflow-y-auto custom-scrollbar cli-output"
       >
-        <pre ref={terminalRef}></pre>
+        <pre id="TERMINAL_CONTENT" ref={terminalRef}></pre>
         <TerminalInput
           inputRef={inputRef}
           pushCommand={pushCommand}
