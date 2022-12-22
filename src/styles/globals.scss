@@ -2,41 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Clash Display";
-  font-style: normal;
-  font-weight: 700;
-  src: url("fonts/ClashDisplay-Bold.otf");
-}
-
-@font-face {
-  font-family: "Clash Display";
-  font-style: normal;
-  font-weight: 600;
-  src: url("fonts/ClashDisplay-Semibold.otf");
-}
-
-@font-face {
-  font-family: "Clash Display";
-  font-style: normal;
-  font-weight: 500;
-  src: url("fonts/ClashDisplay-Regular.otf");
-}
-
-@font-face {
-  font-family: "Fira Code";
-  font-style: normal;
-  font-weight: 700;
-  src: url("fonts/FiraCode-Bold.ttf");
-}
-
-@font-face {
-  font-family: "Fira Code";
-  font-style: normal;
-  font-weight: 600;
-  src: url("fonts/FiraCode-SemiBold.ttf");
-}
-
 @layer base {
   html,
   body {
