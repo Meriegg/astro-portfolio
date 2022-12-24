@@ -88,6 +88,10 @@
     @apply px-10 sm:px-6;
   }
 
+  .sectionPadding2x {
+    @apply px-20 sm:px-6;
+  }
+
   .custom-scrollbar {
     // Google-like scrollbar ._.
     &::-webkit-scrollbar {

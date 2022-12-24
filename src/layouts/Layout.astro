@@ -1,20 +1,32 @@
 ---
+import "../styles/globals.scss";
+import Header from "../components/Header/Header.astro";
 import BaseHead from "../components/BaseHead.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead
-      title="Mariodev | Developer | Designer"
-      description="Hello there! I'm Mario, a 14 year old developer based in Romania."
+      title={title || "Mariodev | Developer | Designer"}
+      description={description ||
+        "Hello there! I'm Mario, a 14 year old developer based in Romania."}
     />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+    <Header />
     <slot />
+    <div id="MENU_PORTAL"></div>
     <div id="CLI_PORTAL"></div>
   </body>
 </html>

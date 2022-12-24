@@ -1,0 +1,24 @@
+// Styles that apply only to the post content
+#POST_CONTENT {
+  * {
+    font-family: "Satoshi", sans-serif;
+    @apply tracking-wide leading-7 font-medium;
+  }
+
+  @apply mt-12 flex flex-col gap-8;
+
+  h1 {
+    @apply text-3xl font-bold;
+  }
+}
+
+// Styles that apply to the whole page
+body {
+  hr {
+    @apply h-[1px] bg-dark-contrast mt-6 border-none;
+  }
+
+  a {
+    @apply text-green-accent decoration-1 hover:underline;
+  }
+}

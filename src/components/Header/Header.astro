@@ -1,0 +1,22 @@
+---
+import Menu from "./Menu";
+import HeaderLink from "./HeaderLink.astro";
+import Terminal from "../../components/Terminal/Terminal";
+---
+
+<header
+  class="fixed top-0 w-full flex justify-between z-20 items-center py-6 sectionPadding bg-gradient-to-b from-main-bg to-transparent"
+>
+  <div class="flex items-center gap-4">
+    <Menu client:idle />
+    <h1 class="text-2xl">
+      Mario<span class="text-green-accent font-semibold">Dev</span>
+    </h1>
+    <div class="flex items-center gap-4 sm:hidden">
+      <HeaderLink href="/" text="Home" />
+      <HeaderLink href="/blog" text="My Blog" />
+    </div>
+  </div>
+
+  <Terminal client:idle />
+</header>

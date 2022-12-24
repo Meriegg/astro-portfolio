@@ -1,56 +1,106 @@
 ---
+import "../styles/globals.scss";
+import "../styles/blogPost.scss";
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
+import Header from "../components/Header/Header.astro";
 import Footer from "../components/Footer.astro";
 
 export interface Props {
   content: {
     title: string;
+    author: string;
+    createdOn: string;
+    updatedOn?: string;
     description: string;
-    pubDate?: string;
-    updatedDate?: string;
-    heroImage?: string;
+    authorSocialLink?: string;
+    tags: string[];
   };
 }
 
 const {
-  content: { title, description, pubDate, updatedDate, heroImage },
+  content: {
+    title,
+    author,
+    createdOn,
+    updatedOn,
+    tags,
+    description,
+    authorSocialLink,
+  },
 } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-    </style>
+    <!-- Satoshi -->
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <Header />
-    <main>
+    <main
+      class="mt-20 m-auto flex flex-col gap-8"
+      style="width: min(800px, 100%);"
+    >
       <article>
-        {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        <h1 class="title">{title}</h1>
-        {pubDate && <time>{pubDate}</time>}
-        {
-          updatedDate && (
-            <div>
-              Last updated on <time>{updatedDate}</time>
+        <div id="POST_HEADER" class="flex flex-col gap-4">
+          <a
+            href="/blog"
+            class="text-text-secondary flex items-center gap-2 text-sm font-semibold"
+          >
+            <img src="/icons/return-up-back.svg" alt="" />
+            Go back
+          </a>
+          <p class="title text-3xl font-semibold">{title}</p>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-1">
+              {
+                authorSocialLink ? (
+                  <a href={authorSocialLink} class="text-sm font-semibold">
+                    {author}
+                  </a>
+                ) : (
+                  <p class="text-sm font-semibold text-text-secondary">
+                    {author}
+                  </p>
+                )
+              }
+              <p class="text-text-secondary font-semibold text-sm">
+                • Created on {createdOn}
+              </p>
+              {
+                updatedOn ? (
+                  <p class="text-text-secondary font-semibold text-sm">
+                    • Updated on {updatedOn}
+                  </p>
+                ) : null
+              }
             </div>
-          )
-        }
+            <div class="flex gap-1 items-center">
+              <p class="text-sm text-text-secondary font-semibold">Tags:</p>
+              {
+                tags.map((tag) => (
+                  <a href="#" class="text-sm font-semibold">
+                    #{tag}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
         <hr />
-        <slot />
+        <div id="POST_CONTENT">
+          <slot />
+        </div>
+        <hr />
       </article>
     </main>
+
     <Footer />
   </body>
 </html>

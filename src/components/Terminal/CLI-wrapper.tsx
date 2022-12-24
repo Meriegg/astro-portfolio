@@ -1,4 +1,5 @@
 import CLI from "./CLI";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { clsx } from "clsx";
 
@@ -8,6 +9,16 @@ interface Props {
 }
 
 const CLIWrapper = ({ isOpen, setOpen }: Props) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <>
       {createPortal(

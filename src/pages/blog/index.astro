@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const blogPosts = await Astro.glob("./posts/*.mdx");
+---
+
+<Layout title={"MarioDev | Blog"} description={"Welcome to my blog!"}>
+  <main class="mt-32 sectionPadding2x">
+    <div class="max-w-[400px] flex flex-col gap-4">
+      <h1 class="text-3xl font-bold text-text-primary">Welcome To My Blog!</h1>
+      <p class="text-base font-semibold text-text-secondary">
+        Here I will try to teach you everything I know about web development in
+        straight-to-the-point articles and courses!
+      </p>
+    </div>
+  </main>
+
+  {
+    blogPosts.map((post) => (
+      <div>
+        <p>{post.frontmatter.title}</p>
+        <post.Content />
+      </div>
+    ))
+  }
+</Layout>
