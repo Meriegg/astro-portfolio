@@ -16,7 +16,7 @@ const blogPosts = await Astro.glob("./posts/*.mdx");
         blogPosts.map(({ frontmatter, url }) => (
           <BlogPostPreview
             author={frontmatter.author}
-            createdOn={frontmatter.createdOn}
+            pubDate={frontmatter.pubDate}
             description={frontmatter.description}
             tags={frontmatter.tags}
             title={frontmatter.title}

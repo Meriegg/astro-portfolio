@@ -5,7 +5,7 @@ export type CommandArgsType = { [key: string]: string };
 export type BlogProps = MarkdownLayoutProps<{
   title: string;
   author: string;
-  createdOn: string;
+  pubDate: string;
   updatedOn?: string;
   description: string;
   authorSocialLink?: string;

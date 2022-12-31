@@ -7,11 +7,11 @@ interface Props {
   tags: string[];
   author: string;
   authorSocialLink?: string;
-  createdOn: string;
+  pubDate: string;
   url?: string;
 }
 
-const { title, description, tags, author, createdOn, authorSocialLink, url } =
+const { title, description, tags, author, pubDate, authorSocialLink, url } =
   Astro.props;
 ---
 
@@ -40,7 +40,7 @@ const { title, description, tags, author, createdOn, authorSocialLink, url } =
       }
       <p class="text-sm text-text-secondary">•</p>
       <p class="text-sm font-semibold text-text-secondary">
-        Created on {createdOn}
+        Created on {pubDate}
       </p>
     </div>
   </div>

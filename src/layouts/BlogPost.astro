@@ -16,7 +16,7 @@ const {
   frontmatter: {
     title,
     author,
-    createdOn,
+    pubDate,
     updatedOn,
     tags,
     description,
@@ -64,7 +64,7 @@ const {
                 )
               }
               <p class="text-text-secondary font-semibold text-sm">
-                • Created on {createdOn}
+                • Created on {pubDate}
               </p>
               {
                 updatedOn ? (
