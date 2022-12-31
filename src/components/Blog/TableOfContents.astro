@@ -1,0 +1,40 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+const TOCPaddings = {
+  1: 0,
+  2: 10,
+  3: 20,
+  4: 30,
+  5: 40,
+  6: 50,
+};
+
+type TOCPaddingsKeyType = keyof typeof TOCPaddings;
+---
+
+<div class="flex flex-col gap-2">
+  <p class="font-semibold text-text-secondary">In this post:</p>
+
+  <div class="flex flex-col gap-1">
+    {
+      headings.map((heading) => (
+        <a
+          href={`#${heading.slug}`}
+          style={`padding-left: ${
+            TOCPaddings[heading.depth as TOCPaddingsKeyType]
+          }px`}
+          class="text-text-primary text-base font-semibold w-fit"
+        >
+          • {heading.text}
+        </a>
+      ))
+    }
+  </div>
+</div>

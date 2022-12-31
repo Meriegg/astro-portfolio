@@ -1,26 +1,30 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import BlogPostPreview from "../../components/Blog/Static/BlogPostPreview.astro";
 
 const blogPosts = await Astro.glob("./posts/*.mdx");
 ---
 
 <Layout title={"MarioDev | Blog"} description={"Welcome to my blog!"}>
-  <main class="mt-32 sectionPadding2x">
+  <main class="mt-32 sectionPadding2x flex flex-col gap-8">
     <div class="max-w-[400px] flex flex-col gap-4">
       <h1 class="text-3xl font-bold text-text-primary">Welcome To My Blog!</h1>
-      <p class="text-base font-semibold text-text-secondary">
-        Here I will try to teach you everything I know about web development in
-        straight-to-the-point articles and courses!
-      </p>
+    </div>
+    <hr class="border-none h-[1px] bg-dark-contrast" />
+    <div class="grid grid-cols-2 gap-20 lg:grid-cols-1">
+      {
+        blogPosts.map(({ frontmatter, url }) => (
+          <BlogPostPreview
+            author={frontmatter.author}
+            createdOn={frontmatter.createdOn}
+            description={frontmatter.description}
+            tags={frontmatter.tags}
+            title={frontmatter.title}
+            url={url}
+            authorSocialLink={frontmatter.authorSocialLink}
+          />
+        ))
+      }
     </div>
   </main>
-
-  {
-    blogPosts.map((post) => (
-      <div>
-        <p>{post.frontmatter.title}</p>
-        <post.Content />
-      </div>
-    ))
-  }
 </Layout>

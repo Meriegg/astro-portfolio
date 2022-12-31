@@ -11,10 +11,14 @@ interface Props {
 const CLIWrapper = ({ isOpen, setOpen }: Props) => {
   const [isMounted, setIsMounted] = useState(false);
 
+  // This makes sure that the react portal will be rendered on the client
+  // and will not cause any errors
+  // You cannot render React portals on the server
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Check if the Component is mounted on the client
   if (!isMounted) {
     return null;
   }

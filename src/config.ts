@@ -17,3 +17,5 @@ export const TWITTER_LINK = `https://twitter.com/${TWITTER_USERNAME}`;
 export const EMAIL_LINK = `mailto:${CONTACT_EMAIL}`;
 
 export const SOURCE_LINK = "https://github.com/Meriegg/astro-portfolio";
+
+export const BLOG_POST_SOURCE = `${SOURCE_LINK}/tree/master/src/pages`;

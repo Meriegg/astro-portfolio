@@ -24,6 +24,7 @@ const CLI = ({ setOpen }: Props) => {
       return;
     }
 
+    // Set the command history
     let tempCommandHistory = [...commandHistory];
     if (commandVal.trim()) {
       tempCommandHistory.push(commandVal);
@@ -41,22 +42,43 @@ const CLI = ({ setOpen }: Props) => {
       return;
     }
 
+    // Run the command and get the output
     const commandOutput = commandRunner(commandVal);
 
     if (!plainOutput && commandVal !== "clear" && commandVal !== "cls") {
+      // Clone the `input` node and attach it to the terminal output
+      // Along with the command that was ran inside it
       const clonedInputRef = inputRef.current.cloneNode(true);
       terminalRef.current.appendChild(clonedInputRef);
+
+      // Hide all the pulsing indicators from the previously cloned input
+      // components
+      // If this does not exist, there will be pulsing cursors `|` on the inputs
+      // that are not focused and cannot be focused
+      const invalidIndicators = document.querySelectorAll("#invalidIndicator");
+      if (invalidIndicators) {
+        invalidIndicators.forEach((elem) => {
+          elem.classList.add("remove");
+        });
+      }
     }
 
+    // Create the element that is going to display
+    // the output for the command
     const elem = document.createElement("pre");
     elem.className = "font-fira";
     elem.innerHTML = plainOutput ? output : commandOutput;
 
+    // Mount the element and automatically scroll to the bottom
+    // of the container
     terminalRef.current.appendChild(elem);
     terminalContainerRef.current.scrollTop =
       terminalContainerRef.current.scrollHeight;
   };
 
+  // Code for the History feature
+  // Its pretty simple and pretty much explains itself
+  // Just some event listeners and some callbacks
   const decreaseHistoryIdx = () => {
     setCommandHistoryIdx((prevIdx) => prevIdx - 1);
   };
@@ -87,6 +109,10 @@ const CLI = ({ setOpen }: Props) => {
       window.removeEventListener("keydown", commandHistoryEventCallback);
   }, []);
 
+  // When the command history index changes / The user presses
+  // the UP key or the DOWN key on their keyboard
+  // Set the value for the input to whatever value
+  // That index holds
   useEffect(() => {
     if (commandHistoryIdx <= -1) {
       setCommandHistoryIdx(0);
@@ -97,9 +123,10 @@ const CLI = ({ setOpen }: Props) => {
     }
 
     setCommandVal(commandHistory[commandHistoryIdx]);
-    console.log(commandHistory);
   }, [commandHistoryIdx]);
 
+  // When the component first loads
+  // Show the credentials command output
   useEffect(() => {
     pushCommand(COMMAND_OUTPUTS.credentials, true);
   }, []);
@@ -122,7 +149,7 @@ const CLI = ({ setOpen }: Props) => {
       </div>
       <div
         ref={terminalContainerRef}
-        className="h-auto bg-terminal-bg flex flex-col px-5 py-2 overflow-y-auto custom-scrollbar cli-output"
+        className="h-auto bg-terminal-bg flex flex-col px-5 py-2 pb-3 overflow-y-auto custom-scrollbar cli-output"
       >
         <pre id="TERMINAL_CONTENT" ref={terminalRef}></pre>
         <TerminalInput

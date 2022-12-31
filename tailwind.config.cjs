@@ -37,6 +37,19 @@ module.exports = {
         xsm: { max: "359px" },
         // => @media (max-width: 359px) { ... }
       },
+      keyframes: {
+        fullPulse: {
+          "0%, 100%": {
+            opacity: "1",
+          },
+          "50%": {
+            opacity: "0",
+          },
+        },
+      },
+      animation: {
+        fullPulse: "fullPulse 1s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

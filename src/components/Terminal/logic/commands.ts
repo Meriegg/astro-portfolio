@@ -16,6 +16,7 @@ export const About = () => COMMAND_OUTPUTS.about;
 export const Credentials = () => COMMAND_OUTPUTS.credentials;
 export const Contact = () => COMMAND_OUTPUTS.contact;
 export const Source = () => COMMAND_OUTPUTS.source;
+
 export const NavigateToSource = (args: CommandArgsType) => {
   if (!args.navigate) {
     return CreateError(`Invalid arguments!`);
@@ -55,6 +56,10 @@ export const NavigateToContact = (args: CommandArgsType) => {
       window.location.href = EMAIL_LINK;
       return "Opening your preferred email client...";
 
+    case "mail":
+      window.location.href = EMAIL_LINK;
+      return "Opening your preferred email client...";
+
     case "instagram":
       window.location.href = INSTAGRAM_LINK;
       return "Navigating to Instagram...";
@@ -63,6 +68,7 @@ export const NavigateToContact = (args: CommandArgsType) => {
       return CreateError(`I cannot be contacted on ${source}`);
   }
 };
+
 export const Clear = () => {
   const terminalContent = document.getElementById("TERMINAL_CONTENT");
   if (!terminalContent) {
@@ -71,4 +77,16 @@ export const Clear = () => {
 
   terminalContent.innerHTML = "";
   return "";
+};
+
+export const NavigateToPath = (args: CommandArgsType) => {
+  if (!args.path) {
+    return CreateError(`Invalid Arguments!`);
+  }
+
+  const path = args.path;
+
+  window.location.pathname = path;
+
+  return `Navigating to ${path}`;
 };

@@ -1,21 +1,41 @@
 // Styles that apply only to the post content
 #POST_CONTENT {
-  * {
-    font-family: "Satoshi", sans-serif;
-    @apply tracking-wide leading-7 font-medium;
-  }
-
-  @apply mt-12 flex flex-col gap-8;
+  @apply flex flex-col gap-6;
 
   h1 {
-    @apply text-3xl font-bold;
+    @apply text-3xl font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+  }
+
+  h4 {
+    @apply text-lg font-semibold;
+  }
+
+  h5 {
+    @apply text-base font-semibold;
+  }
+
+  h6 {
+    @apply text-sm font-semibold;
+  }
+
+  p,
+  span {
+    @apply font-normal text-base tracking-wider leading-8;
   }
 }
 
 // Styles that apply to the whole page
 body {
   hr {
-    @apply h-[1px] bg-dark-contrast mt-6 border-none;
+    @apply h-[1px] bg-dark-contrast border-none;
   }
 
   a {

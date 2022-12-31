@@ -4,21 +4,16 @@ import "../styles/blogPost.scss";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header/Header.astro";
 import Footer from "../components/Footer.astro";
+import TableOfContents from "../components/Blog/TableOfContents.astro";
+import PortalContainers from "../components/PortalContainers.astro";
+import ShareArticleFooter from "../components/Blog/Interactive/ShareArticleFooter";
+import VisitPageOnGithub from "../components/Blog/Static/VisitPageOnGithub.astro";
+import type { BlogProps } from "../types/index";
 
-export interface Props {
-  content: {
-    title: string;
-    author: string;
-    createdOn: string;
-    updatedOn?: string;
-    description: string;
-    authorSocialLink?: string;
-    tags: string[];
-  };
-}
+type Props = BlogProps;
 
 const {
-  content: {
+  frontmatter: {
     title,
     author,
     createdOn,
@@ -26,7 +21,9 @@ const {
     tags,
     description,
     authorSocialLink,
+    url,
   },
+  headings,
 } = Astro.props;
 ---
 
@@ -42,11 +39,8 @@ const {
 
   <body>
     <Header />
-    <main
-      class="mt-20 m-auto flex flex-col gap-8"
-      style="width: min(800px, 100%);"
-    >
-      <article>
+    <main class="mt-20 m-auto px-6" style="width: min(800px, 100%);">
+      <article class="flex flex-col gap-8">
         <div id="POST_HEADER" class="flex flex-col gap-4">
           <a
             href="/blog"
@@ -84,23 +78,26 @@ const {
               <p class="text-sm text-text-secondary font-semibold">Tags:</p>
               {
                 tags.map((tag) => (
-                  <a href="#" class="text-sm font-semibold">
-                    #{tag}
-                  </a>
+                  <p class="text-sm font-semibold text-green-accent">#{tag}</p>
                 ))
               }
             </div>
           </div>
         </div>
-
+        <hr />
+        <TableOfContents headings={headings} />
         <hr />
         <div id="POST_CONTENT">
           <slot />
         </div>
         <hr />
+        <ShareArticleFooter client:visible url={url} />
+        <VisitPageOnGithub url={url} />
+        <hr />
       </article>
     </main>
 
     <Footer />
+    <PortalContainers />
   </body>
 </html>

@@ -2,6 +2,7 @@
 import "../styles/globals.scss";
 import Header from "../components/Header/Header.astro";
 import BaseHead from "../components/BaseHead.astro";
+import PortalContainers from "../components/PortalContainers.astro";
 
 interface Props {
   title?: string;
@@ -26,7 +27,6 @@ const { title, description } = Astro.props;
   <body>
     <Header />
     <slot />
-    <div id="MENU_PORTAL"></div>
-    <div id="CLI_PORTAL"></div>
+    <PortalContainers />
   </body>
 </html>

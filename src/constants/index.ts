@@ -33,6 +33,7 @@ Here is a list of all things you can do:
     <span class="text-terminal-yellow">clear || cls</span>: clears the terminal 
     <span class="text-terminal-yellow">source</span>: gives you a link for the source code of this website
     <span class="text-terminal-yellow">source --navigate [true || false]</span>: navigates you to the source code of this website
+    <span class="text-terminal-yellow">navigate --path [PATH]</span>: navigates you to the chosen path on the website
     <span class="text-terminal-red">exit</span>: closes the terminal
 
 `;

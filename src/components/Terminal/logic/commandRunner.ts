@@ -9,6 +9,7 @@ import {
   NavigateToContact,
   Source,
   NavigateToSource,
+  NavigateToPath,
 } from "./commands";
 
 interface IsValidCheckProps {
@@ -23,34 +24,38 @@ const isValid = (valid: IsValidCheckProps, toBeChecked: IsValidCheckProps) => {
 
 export default (command: string) => {
   const { action, args, argsLen } = commandParser(command);
+  const toBeChecked = { action, argsLen };
 
   switch (true) {
-    case isValid({ action: "help", argsLen: 0 }, { action, argsLen }):
+    case isValid({ action: "help", argsLen: 0 }, toBeChecked):
       return Help();
 
-    case isValid({ action: "about", argsLen: 0 }, { action, argsLen }):
+    case isValid({ action: "about", argsLen: 0 }, toBeChecked):
       return About();
 
-    case isValid({ action: "credentials", argsLen: 0 }, { action, argsLen }):
+    case isValid({ action: "credentials", argsLen: 0 }, toBeChecked):
       return Credentials();
 
-    case isValid({ action: "contact", argsLen: 1 }, { action, argsLen }):
+    case isValid({ action: "contact", argsLen: 1 }, toBeChecked):
       return NavigateToContact(args);
 
-    case isValid({ action: "contact", argsLen: 0 }, { action, argsLen }):
+    case isValid({ action: "contact", argsLen: 0 }, toBeChecked):
       return Contact();
 
-    case isValid({ action: "source", argsLen: 1 }, { action, argsLen }):
+    case isValid({ action: "source", argsLen: 1 }, toBeChecked):
       return NavigateToSource(args);
 
-    case isValid({ action: "source", argsLen: 0 }, { action, argsLen }):
+    case isValid({ action: "source", argsLen: 0 }, toBeChecked):
       return Source();
 
-    case isValid({ action: "clear", argsLen: 0 }, { action, argsLen }):
+    case isValid({ action: "clear", argsLen: 0 }, toBeChecked):
       return Clear();
 
-    case isValid({ action: "cls", argsLen: 0 }, { action, argsLen }):
+    case isValid({ action: "cls", argsLen: 0 }, toBeChecked):
       return Clear();
+
+    case isValid({ action: "navigate", argsLen: 1 }, toBeChecked):
+      return NavigateToPath(args);
 
     default:
       return CreateError(
