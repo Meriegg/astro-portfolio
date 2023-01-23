@@ -21,7 +21,7 @@ const { url } = Astro.props;
   <div class="flex flex-wrap gap-4 items-center">
     {
       url ? (
-        <a href={`${BLOG_POST_SOURCE}${url}`}>
+        <a href={`${BLOG_POST_SOURCE}${url}.mdx`}>
           <AccentButton>Visit this page on github!</AccentButton>
         </a>
       ) : (
