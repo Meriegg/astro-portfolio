@@ -1,0 +1,69 @@
+---
+layout: "@layouts/BlogPost.astro"
+title: "TSconfig Paths - What are they and how to use them!"
+author: "MarioDev"
+authorSocialLink: "https://mariodev.vercel.app"
+pubDate: "23/01/2023"
+updatedOn: null
+description: "What are TSconfig paths and how can they improve your developer experience by a very wide margin?"
+tags: ["general", "coolToKnow"]
+---
+
+import Code from "@blogUi/Static/Code.astro";
+
+# What are TSconfig paths?
+
+TypeScript is a powerful tool that allows developers to write robust and maintainable JavaScript code.
+One of the key features of TypeScript is its ability to use the `tsconfig.json` file to configure the compiler options.
+One of the most important options in this file is the paths option, which allows you to configure module resolution in your project.
+
+The paths option is an object that maps a package or module name to a location on disk.
+For example, you can use the paths option to map the `@src` package to the `src` directory of your project.
+This allows you to use the `@src` package name in your imports, instead of having to use relative paths.
+
+# How can I start using them?
+
+To start using them, you need to specify the following options:
+
+<Code
+  code={`{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"]
+    }
+  }
+}
+`}
+/>
+
+In this example, the `baseUrl` is set to the root of the project, and the `paths` option maps the `@src` package to the `src` directory. This allows you to use the following import statement:
+
+<Code code={`import { someModule } from '@src/someModule';`} />
+
+Instead of the following:
+
+<Code code={`import { someModule } from '../src/someModule';`} />
+
+This may not seem like much, but it will make the difference in big projects where file structure can get a bit crazy.
+Imports like this make my life hell and my code ugly.
+
+<Code code={`import { someModule } from '../../../../folder/someModule'`} />
+
+Why would you want to do all that just to (for example) import a utility function that removes the protocol from a link
+in your React component?
+
+# Worth remembering
+
+You will most likely want to use the `paths` option with the help of wildcards, so you can map multiple directories at once.
+This allows you to use the `@src` package name in all imports, regardless of the subdirectory in which the module is located.
+
+For example, if you don't include the wildcard `*`, you cannot access any subdirectories in your paths.
+
+# Conclusion: Why the paths option is a must-have for large TypeScript projects
+
+Using the paths option in your tsconfig.json file is a great way to make your code more maintainable and readable, and it's a must-have for large projects. It can save you a lot of time and effort, and it's definitely worth considering for any TypeScript project.
+
+Please note that for the above configuration to work, you should use the paths in conjunction with a module loader like webpack, otherwise, it won't work.
+
+That's it for today! I hope this article helped you understand how to use the paths option in your tsconfig.json file. Happy coding!

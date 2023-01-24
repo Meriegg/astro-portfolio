@@ -75,7 +75,7 @@
 
 @layer utilities {
   .font-fira {
-    font-family: "Fira Code";
+    font-family: "Fira Code", monospace !important;
   }
 
   .cli-output {

@@ -1,34 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap");
+
 // Styles that apply only to the post content
 #POST_CONTENT {
   @apply flex flex-col gap-6;
 
+  * {
+    font-family: "Inter", sans-serif;
+  }
+
   h1 {
-    @apply text-3xl font-semibold;
+    @apply text-3xl font-extrabold tracking-tight;
   }
 
   h2 {
-    @apply text-2xl font-semibold;
+    @apply text-2xl font-extrabold tracking-tight;
   }
 
   h3 {
-    @apply text-xl font-semibold;
+    @apply text-xl font-extrabold tracking-tight;
   }
 
   h4 {
-    @apply text-lg font-semibold;
+    @apply text-lg font-extrabold tracking-tight;
   }
 
   h5 {
-    @apply text-base font-semibold;
+    @apply text-base font-extrabold tracking-tight;
   }
 
   h6 {
-    @apply text-sm font-semibold;
+    @apply text-sm font-extrabold tracking-tight;
   }
 
   p,
   span {
-    @apply font-normal text-base tracking-wider leading-8;
+    @apply text-base font-medium tracking-tight leading-8;
+  }
+
+  ul {
+    @apply ml-8;
+  }
+
+  li {
+    &::before {
+      content: "";
+
+      @apply w-1 h-1 bg-white rounded-full absolute -left-3 top-[50%] transform -translate-y-[50%];
+    }
+
+    @apply mt-4 relative;
+  }
+
+  code,
+  .astro-code * {
+    @apply font-fira font-medium tracking-tight;
+  }
+
+  .astro-code {
+    @apply px-4 py-2 rounded-md;
   }
 }
 
