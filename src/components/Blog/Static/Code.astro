@@ -1,10 +1,23 @@
 ---
+import CopyCodeLabel from "../Interactive/CopyCodeLabel";
 import { Code } from "astro/components";
 import type { Props as CodeProps } from "astro/components/Code.astro";
 
-interface Props extends CodeProps {}
+interface Props extends CodeProps {
+  codeLabel?: string;
+}
 
-const { code, lang = "ts", theme = "poimandres" } = Astro.props;
+const { code, lang = "ts", theme = "poimandres", codeLabel } = Astro.props;
 ---
 
-<Code code={code} lang={lang} theme={theme} />
+<div class="overflow-hidden rounded-md">
+  {
+    codeLabel && (
+      <div class="codeLabel flex items-center justify-between">
+        <p class="!text-sm !font-fira text-text-secondary">{codeLabel}</p>
+        <CopyCodeLabel code={code} label={codeLabel} client:visible />
+      </div>
+    )
+  }
+  <Code code={code} lang={lang} theme={theme} />
+</div>

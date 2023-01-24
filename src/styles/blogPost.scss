@@ -57,7 +57,13 @@
   }
 
   .astro-code {
-    @apply px-4 py-2 rounded-md;
+    @apply px-4 py-2;
+  }
+
+  .codeLabel {
+    background-color: hsl(226deg 25% 8%);
+
+    @apply w-full px-3 py-2 font-fira;
   }
 }
 
