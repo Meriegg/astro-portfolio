@@ -107,7 +107,7 @@ export const DownloadResume = (args: CommandArgsType) => {
 
   switch (isAutoDownload) {
     case "true":
-      downloadFile("/resume.pdf");
+      downloadFile("/Resume.pdf");
       break;
 
     case "false":
