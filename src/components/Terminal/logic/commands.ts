@@ -1,3 +1,4 @@
+import downloadFile from "@src/utils/downloadFile";
 import { COMMAND_OUTPUTS } from "../../../constants";
 import {
   INSTAGRAM_LINK,
@@ -89,4 +90,32 @@ export const NavigateToPath = (args: CommandArgsType) => {
   window.location.pathname = path;
 
   return `Navigating to ${path}`;
+};
+
+export const NavigateToResume = () => {
+  window.location.pathname = "/resume";
+
+  return `Navigating to resume`;
+};
+
+export const DownloadResume = (args: CommandArgsType) => {
+  const isAutoDownload = args["auto-download"];
+
+  if (!isAutoDownload) {
+    return CreateError("Invalid Arguments!");
+  }
+
+  switch (isAutoDownload) {
+    case "true":
+      downloadFile("/resume.pdf");
+      break;
+
+    case "false":
+      return "Downloading file cancelled!";
+
+    default:
+      return CreateError("Arg value must be `true` or `false`");
+  }
+
+  return `Downloading resume...`;
 };

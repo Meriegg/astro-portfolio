@@ -1,0 +1,115 @@
+---
+import Layout from "@layouts/Layout.astro";
+import {
+  AccentButton,
+  GhostButton,
+} from "@src/components/Blog/Interactive/Buttons";
+---
+
+<style>
+  .translate {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+  }
+
+  .hidden {
+    opacity: 0;
+  }
+
+  .show {
+    opacity: 1;
+  }
+</style>
+
+<Layout title="MarioDev | Resume" description="Take a look at my resume!">
+  <main class="mt-20 w-full">
+    <h1 class="text-center text-4xl font-bold">My Resume</h1>
+    <div class="mt-16 flex flex-wrap justify-center gap-4">
+      <a href="/resume.pdf" download="/resume.pdf">
+        <AccentButton
+          >Download PDF
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            class="w-5 h-5 stroke-main-bg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 13.5l3 3m0 0l3-3m-3 3v-6m1.06-4.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+            ></path>
+          </svg>
+        </AccentButton>
+      </a>
+      <a href="/resume.pdf">
+        <GhostButton
+          >View full screen pdf
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            class="w-5 h-5 stroke-text-primary"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"
+            ></path>
+          </svg>
+        </GhostButton>
+      </a>
+    </div>
+
+    <div class="w-full relative m-auto" style="width: min(500px, 100%)">
+      <video
+        width="500px"
+        height="750px"
+        class="translate show mt-12"
+        id="resumeVideo"
+        autoplay="autoplay"
+        muted
+      >
+        <source src="/ResumeVideo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <iframe
+        id="resumeIframe"
+        class="translate hidden mt-12 max-w-[500px]"
+        src="Resume.pdf"
+        width="100%"
+        height="750px"
+        allowfullscreen={false}></iframe>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const resumeVideo = document.getElementById("resumeVideo");
+  const pdfIframe = document.getElementById("resumeIframe");
+
+  (() => {
+    if (resumeVideo) {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  })();
+
+  if (resumeVideo && pdfIframe) {
+    resumeVideo.addEventListener(
+      "ended",
+      () => {
+        console.log("Video ended!");
+        resumeVideo.classList.add("hidden");
+        resumeVideo.classList.remove("show");
+        pdfIframe.classList.remove("hidden");
+        pdfIframe.classList.add("show");
+      },
+      false
+    );
+  }
+</script>

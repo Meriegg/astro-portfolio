@@ -10,6 +10,8 @@ import {
   Source,
   NavigateToSource,
   NavigateToPath,
+  NavigateToResume,
+  DownloadResume,
 } from "./commands";
 
 interface IsValidCheckProps {
@@ -56,6 +58,12 @@ export default (command: string) => {
 
     case isValid({ action: "navigate", argsLen: 1 }, toBeChecked):
       return NavigateToPath(args);
+
+    case isValid({ action: "resume", argsLen: 1 }, toBeChecked):
+      return DownloadResume(args);
+
+    case isValid({ action: "resume", argsLen: 0 }, toBeChecked):
+      return NavigateToResume();
 
     default:
       return CreateError(

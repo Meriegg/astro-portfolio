@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import BlogPostPreview from "../../components/Blog/Static/BlogPostPreview.astro";
 
-const blogPosts = await Astro.glob("./posts/*.mdx");
+const blogPosts = await Astro.glob("./posts/**/*.{md,mdx}");
 ---
 
 <Layout title={"MarioDev | Blog"} description={"Welcome to my blog!"}>

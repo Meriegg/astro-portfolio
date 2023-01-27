@@ -14,8 +14,6 @@ export default (command: string) => {
     }
   });
 
-  console.log(parsedArgs);
-
   return {
     action,
     argsLen,

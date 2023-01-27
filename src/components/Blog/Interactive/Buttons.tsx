@@ -8,7 +8,7 @@ type Props = {
 >;
 
 const BaseBtnStyles =
-  "transition-all duration-200 w-fit px-7 py-3 rounded-full text-sm font-semibold";
+  "transition-all duration-200 w-fit px-7 py-3 rounded-full text-sm font-semibold flex justify-center gap-2 items-center";
 
 export const AccentButton = ({ children, className, ...props }: Props) => {
   return (
