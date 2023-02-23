@@ -31,18 +31,12 @@
 <div id="BUBBLE" class="absolute -z-20"></div>
 
 <script>
-  function isTouchDevice() {
-    var el = document.createElement("div");
-    el.setAttribute("ongesturestart", "return;");
-    // @ts-expect-error
-    if (typeof el.ongesturestart == "function") {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  const isTouchDevice = () => "ontouchstart" in document.documentElement;
 
   const bubble = document.getElementById("BUBBLE");
+  if (isTouchDevice() && bubble) {
+    bubble.style.display = "none";
+  }
 
   document.addEventListener("mousemove", (e) => {
     const hideCursorBubble = JSON.parse(
@@ -56,9 +50,12 @@
 
     if (!bubble) return;
 
+    // This is the bottom margin for the bubble so it won't overflow and cause scroll issues
+    const maxScreenUnderBoundary = 225;
+
     const hasHitBoundaries =
       e.clientY + window.pageYOffset >=
-      window.innerHeight + window.pageYOffset - 200;
+      window.innerHeight + window.pageYOffset - maxScreenUnderBoundary;
     const currentYPos = !hasHitBoundaries && e.clientY + window.pageYOffset;
 
     bubble.animate(
