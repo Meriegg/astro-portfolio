@@ -36,6 +36,7 @@ Here is a list of all things you can do:
     <span class="text-terminal-yellow">navigate --path [PATH]</span>: navigates you to the chosen path on the website
     <span class="text-terminal-yellow">resume</span>: navigates you to my resume
     <span class="text-terminal-yellow">resume --auto-download [true || false]</span>: downloads my resume
+    <span class="text-terminal-yellow">cursorBubble --active [true || false]</span>: disable or enable the cursor bubble
     <span class="text-terminal-red">exit</span>: closes the terminal
 
 `;

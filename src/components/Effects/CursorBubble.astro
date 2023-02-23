@@ -1,0 +1,72 @@
+<style>
+  #BUBBLE {
+    width: 350px;
+    height: 350px;
+    background-image: linear-gradient(blue, purple, cyan);
+    border-radius: 100%;
+    translate: -50% -50%;
+    animation: 10s bubbleMorph linear infinite;
+  }
+
+  #BUBBLE_BLUR {
+    backdrop-filter: blur(150px);
+  }
+
+  @keyframes bubbleMorph {
+    from {
+      rotate: 0deg;
+    }
+
+    50% {
+      scale: 1.25 1;
+    }
+
+    to {
+      rotate: 360deg;
+    }
+  }
+</style>
+
+<div id="BUBBLE_BLUR" class="fixed w-full h-full top-0 left-0 -z-10"></div>
+<div id="BUBBLE" class="absolute -z-20"></div>
+
+<script>
+  function isTouchDevice() {
+    var el = document.createElement("div");
+    el.setAttribute("ongesturestart", "return;");
+    // @ts-expect-error
+    if (typeof el.ongesturestart == "function") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const bubble = document.getElementById("BUBBLE");
+
+  document.addEventListener("mousemove", (e) => {
+    const hideCursorBubble = JSON.parse(
+      localStorage.getItem("hideCursorBubble") || "true"
+    );
+
+    if ((hideCursorBubble === false || isTouchDevice()) && bubble) {
+      bubble.style.display = "none";
+      return;
+    }
+
+    if (!bubble) return;
+
+    const hasHitBoundaries =
+      e.clientY + window.pageYOffset >=
+      window.innerHeight + window.pageYOffset - 200;
+    const currentYPos = !hasHitBoundaries && e.clientY + window.pageYOffset;
+
+    bubble.animate(
+      {
+        top: `${currentYPos}px`,
+        left: `${e.clientX}px`,
+      },
+      { fill: "forwards", duration: 3000 }
+    );
+  });
+</script>

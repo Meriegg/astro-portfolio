@@ -3,6 +3,7 @@ import "../styles/globals.scss";
 import Header from "../components/Header/Header.astro";
 import BaseHead from "../components/BaseHead.astro";
 import PortalContainers from "../components/PortalContainers.astro";
+import CursorBubble from "@src/components/Effects/CursorBubble.astro";
 
 interface Props {
   title?: string;
@@ -25,6 +26,7 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body class="overflow-x-hidden">
+    <CursorBubble />
     <Header />
     <slot />
     <PortalContainers />

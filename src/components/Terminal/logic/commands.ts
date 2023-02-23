@@ -119,3 +119,20 @@ export const DownloadResume = (args: CommandArgsType) => {
 
   return `Downloading resume...`;
 };
+
+export const ToggleCursorBubble = (args: CommandArgsType) => {
+  const val = args.active;
+
+  switch (val) {
+    case "true":
+      localStorage.setItem("hideCursorBubble", "true");
+      return "Cursor bubble is now active, reload for changes to take effect";
+
+    case "false":
+      localStorage.setItem("hideCursorBubble", "false");
+      return "Cursor bubble is now inactive, reload for changes to take effect";
+
+    default:
+      return CreateError("Value should be either `true` or `false`");
+  }
+};

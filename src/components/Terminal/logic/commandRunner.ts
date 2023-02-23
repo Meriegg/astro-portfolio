@@ -12,6 +12,7 @@ import {
   NavigateToPath,
   NavigateToResume,
   DownloadResume,
+  ToggleCursorBubble,
 } from "./commands";
 
 interface IsValidCheckProps {
@@ -61,6 +62,9 @@ export default (command: string) => {
 
     case isValid({ action: "resume", argsLen: 1 }, toBeChecked):
       return DownloadResume(args);
+
+    case isValid({ action: "cursorBubble", argsLen: 1 }, toBeChecked):
+      return ToggleCursorBubble(args);
 
     case isValid({ action: "resume", argsLen: 0 }, toBeChecked):
       return NavigateToResume();
