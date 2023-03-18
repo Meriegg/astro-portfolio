@@ -4,13 +4,6 @@
 
 # My Stack
 
-  - [Astro.build](https://astro.build)
-  - [React.Js](https://reactjs.org)
-	- [Tailwind CSS](https://tailwindcss.com)
-
-# License
-
-MIT License.
-
-You can use this website as your own as long as you provide a link to [my website](https://mariodev.vercel.app) in your website.
-
+- [Astro.build](https://astro.build)
+- [React.Js](https://reactjs.org)
+  - [Tailwind CSS](https://tailwindcss.com)
