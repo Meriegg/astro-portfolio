@@ -5,36 +5,36 @@
   @apply flex flex-col gap-6;
 
   * {
-    font-family: "Inter", sans-serif;
+    @apply tracking-wide;
   }
 
   h1 {
-    @apply text-3xl font-extrabold tracking-tight;
+    @apply text-3xl font-extrabold;
   }
 
   h2 {
-    @apply text-2xl font-extrabold tracking-tight;
+    @apply text-2xl font-extrabold;
   }
 
   h3 {
-    @apply text-xl font-extrabold tracking-tight;
+    @apply text-xl font-extrabold;
   }
 
   h4 {
-    @apply text-lg font-extrabold tracking-tight;
+    @apply text-lg font-extrabold;
   }
 
   h5 {
-    @apply text-base font-extrabold tracking-tight;
+    @apply text-base font-extrabold;
   }
 
   h6 {
-    @apply text-sm font-extrabold tracking-tight;
+    @apply text-sm font-extrabold;
   }
 
   p,
   span {
-    @apply text-base font-medium tracking-tight leading-8;
+    @apply text-base font-medium leading-8;
   }
 
   ul {

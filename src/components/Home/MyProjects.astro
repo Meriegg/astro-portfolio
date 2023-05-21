@@ -17,24 +17,13 @@ import Project from "./Project.astro";
   <div class="mt-20 flex flex-col gap-36">
     <Project
       idx={1}
-      description="This website is a demo e-commerce store with a full GraphQL backend and a MongoDB database, but it also allows you to add your own local modifications to the store via the Admin Menu."
-      name="Show Store: E-commerce Demo"
-      technologiesUsed={[
-        "Sass",
-        "GraphQL",
-        "Next.Js",
-        "React.Js",
-        "Node.Js",
-        "MongoDB",
-      ]}
+      description="This website is a demo e-commerce store with a full tRPC backend and PostgreSQL database. This website also includes a full admin dashboard with admin authentication, account management, product management, order management and much more."
+      name="Show Store"
+      technologiesUsed={["Tailwind CSS", "tRPC", "Next.js", "React.Js", "Node.Js", "PostgreSQL"]}
       sourceHREFs={[
         {
-          href: "https://github.com/Meriegg/show-store-client",
-          text: "Client Code",
-        },
-        {
-          href: "https://github.com/Meriegg/show-store-backend",
-          text: "Backend Code",
+          href: "https://github.com/Meriegg/show-store-client/tree/next13-show-store",
+          text: "Source Code",
         },
       ]}
       websiteHREF="https://show-store.vercel.app"
@@ -43,6 +32,20 @@ import Project from "./Project.astro";
     />
     <Project
       idx={2}
+      name="Notr"
+      description="An open source note manager you can host yourself. This project allows you to create or import all of your text files and easily search through them, saving you time from manually searching through your files finding what you need."
+      technologiesUsed={["Next.Js", "React.Js", "Mantine", "tRPC"]}
+      sourceHREFs={[
+        {
+          href: "https://github.com/Meriegg/portfolio-terminal",
+          text: "Source Code",
+        },
+      ]}
+      previewImgAlt="PREVIEW IMAGE"
+      previewImgSrc="projectImgs/NotrUI_Shot.png"
+    />
+    <Project
+      idx={3}
       description="This is a Terminal-like portfolio website created by me with Next.Js and Scss. You can start by typing `help`, for more info visit the github repo."
       name="Terminal Portfolio"
       technologiesUsed={["Next.Js", "React.Js", "Sass", "Typescript"]}

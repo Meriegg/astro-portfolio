@@ -13,16 +13,7 @@ import type { BlogProps } from "../types/index";
 type Props = BlogProps;
 
 const {
-  frontmatter: {
-    title,
-    author,
-    pubDate,
-    updatedOn,
-    tags,
-    description,
-    authorSocialLink,
-    url,
-  },
+  frontmatter: { title, author, pubDate, updatedOn, tags, description, authorSocialLink, url },
   headings,
 } = Astro.props;
 ---
@@ -30,11 +21,6 @@ const {
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
-    <!-- Satoshi -->
-    <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap"
-      rel="stylesheet"
-    />
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1846210135713091"
@@ -46,11 +32,8 @@ const {
     <Header />
     <main class="mt-20 m-auto px-6" style="width: min(800px, 100%);">
       <article class="flex flex-col gap-8">
-        <div id="POST_HEADER" class="flex flex-col gap-4">
-          <a
-            href="/blog"
-            class="text-text-secondary flex items-center gap-2 text-sm font-semibold"
-          >
+        <div id="POST_HEADER" class="flex flex-col gap-4 mt-4">
+          <a href="/blog" class="text-text-secondary flex items-center gap-2 text-sm font-semibold">
             <img src="/icons/return-up-back.svg" alt="" />
             Go back
           </a>
@@ -63,9 +46,7 @@ const {
                     {author}
                   </a>
                 ) : (
-                  <p class="text-sm font-semibold text-text-secondary">
-                    {author}
-                  </p>
+                  <p class="text-sm font-semibold text-text-secondary">{author}</p>
                 )
               }
               <p class="text-text-secondary font-semibold text-sm">
@@ -73,19 +54,13 @@ const {
               </p>
               {
                 updatedOn ? (
-                  <p class="text-text-secondary font-semibold text-sm">
-                    • Updated on {updatedOn}
-                  </p>
+                  <p class="text-text-secondary font-semibold text-sm">• Updated on {updatedOn}</p>
                 ) : null
               }
             </div>
             <div class="flex gap-1 items-center">
               <p class="text-sm text-text-secondary font-semibold">Tags:</p>
-              {
-                tags.map((tag) => (
-                  <p class="text-sm font-semibold text-green-accent">#{tag}</p>
-                ))
-              }
+              {tags.map((tag) => <p class="text-sm font-semibold text-green-accent">#{tag}</p>)}
             </div>
           </div>
         </div>

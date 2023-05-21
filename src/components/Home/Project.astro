@@ -9,7 +9,7 @@ interface Props {
     text: string;
     href: string;
   }[];
-  websiteHREF: string;
+  websiteHREF?: string;
   previewImgSrc: string;
   previewImgAlt: string;
   idx: number;
@@ -43,22 +43,25 @@ const {
     <div class="flex flex-col gap-4">
       <p class="max-w-[550px] text-text-secondary">{description}</p>
       <div class="flex flex-wrap gap-3 font-bold">
-        Technologies used: {
-          technologiesUsed.map((technology) => <Chip text={technology} />)
-        }
+        Technologies used: {technologiesUsed.map((technology) => <Chip text={technology} />)}
       </div>
     </div>
 
     <div class="w-fit flex flex-col gap-4">
       <div class="w-full h-[1px] bg-text-secondary"></div>
-      <div class="flex flex-wrap gap-4">
-        <a
-          href={websiteHREF}
-          target="_blank"
-          class="flex gap-1 font-semibold tracking-normal hover:underline decoration-2 text-lg"
-          >Visit Website
-          <img src="icons/pin-sharp.svg" alt="ICON" />
-        </a>
+      <div class="flex flex-wrap gap-4 px-2">
+        {
+          websiteHREF && (
+            <a
+              href={websiteHREF}
+              target="_blank"
+              class="flex gap-1 font-semibold tracking-normal hover:underline decoration-2 text-lg"
+            >
+              Visit Website
+              <img src="icons/pin-sharp.svg" alt="ICON" />
+            </a>
+          )
+        }
         {
           sourceHREFs.map((source) => (
             <a
