@@ -31,6 +31,7 @@
   "devDependencies": {
     "@types/qs": "^6.9.7",
     "@types/react-copy-to-clipboard": "^5.0.4",
+    "prettier": "^2.8.8",
     "sass": "^1.56.1"
   }
 }
