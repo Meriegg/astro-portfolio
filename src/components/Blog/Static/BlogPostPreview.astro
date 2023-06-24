@@ -11,8 +11,7 @@ interface Props {
   url?: string;
 }
 
-const { title, description, tags, author, pubDate, authorSocialLink, url } =
-  Astro.props;
+const { title, description, tags, author, pubDate, authorSocialLink, url } = Astro.props;
 ---
 
 <div class="flex flex-col gap-4" style="width: min(500px, 100%);">
@@ -21,13 +20,17 @@ const { title, description, tags, author, pubDate, authorSocialLink, url } =
     <div class="flex gap-2">
       {
         tags.map((tag) => (
-          <p class="font-semibold text-sm text-green-accent">#{tag}</p>
+          <p class="font-semibold text-sm dark:text-green-accent text-lightMode-green-accent">
+            #{tag}
+          </p>
         ))
       }
     </div>
   </div>
   <div class="flex flex-col gap-2">
-    <p class="font-semibold text-base text-text-primary">{description}</p>
+    <p class="font-semibold text-base dark:text-text-primary text-lightMode-text-primary">
+      {description}
+    </p>
     <div class="flex gap-2">
       {
         authorSocialLink ? (
@@ -35,11 +38,13 @@ const { title, description, tags, author, pubDate, authorSocialLink, url } =
             {author}
           </a>
         ) : (
-          <p class="text-sm font-semibold text-text-secondary">{author}</p>
+          <p class="text-sm font-semibold dark:text-text-secondary text-lightMode-text-secondary">
+            {author}
+          </p>
         )
       }
-      <p class="text-sm text-text-secondary">•</p>
-      <p class="text-sm font-semibold text-text-secondary">
+      <p class="text-sm dark:text-text-secondary text-lightMode-text-secondary">•</p>
+      <p class="text-sm font-semibold dark:text-text-secondary text-lightMode-text-secondary">
         Created on {pubDate}
       </p>
     </div>
@@ -53,24 +58,22 @@ const { title, description, tags, author, pubDate, authorSocialLink, url } =
           <>
             <a
               href={url}
-              class="flex gap-2 font-semibold tracking-normal text-base text-text-primary hover:underline decoration-2 items-center"
+              class="flex gap-2 font-semibold tracking-normal text-base dark:text-text-primary text-lightMode-text-primary hover:underline decoration-2 items-center"
             >
               Read More
-              <img src="icons/pin-sharp.svg" class="w-4 h-4" />
+              <i class="fa-solid fa-map-pin dark:text-primary text-lightMode-text-primary" />
             </a>
 
             <a
               href={`${BLOG_POST_SOURCE}${url}.mdx`}
-              class="flex gap-2 font-semibold tracking-normal text-base text-text-primary hover:underline decoration-2 items-center"
+              class="flex gap-2 font-semibold tracking-normal text-base dark:text-text-primary text-lightMode-text-primary hover:underline decoration-2 items-center"
             >
               View Post Source
-              <img src="icons/logo-github.svg" class="w-4 h-4" />
+              <i class="fa-brands fa-github dark:text-text-primary text-lightMode-text-primary" />
             </a>
           </>
         ) : (
-          <p class="text-sm text-red-500 font-semibold">
-            Error: No source link was provided
-          </p>
+          <p class="text-sm text-red-500 font-semibold">Error: No source link was provided</p>
         )
       }
     </div>

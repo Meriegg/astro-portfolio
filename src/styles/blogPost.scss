@@ -1,3 +1,4 @@
+@import "./globals.scss";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap");
 
 // Styles that apply only to the post content
@@ -74,6 +75,6 @@ body {
   }
 
   a {
-    @apply text-green-accent decoration-1 hover:underline;
+    @apply dark:text-green-accent text-lightMode-green-accent decoration-1 hover:underline;
   }
 }

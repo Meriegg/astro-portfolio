@@ -20,17 +20,15 @@ type TOCPaddingsKeyType = keyof typeof TOCPaddings;
 ---
 
 <div class="flex flex-col gap-2">
-  <p class="font-semibold text-text-secondary">In this post:</p>
+  <p class="font-semibold dark:text-text-secondary text-lightMode-text-secondary">In this post:</p>
 
   <div class="flex flex-col gap-1">
     {
       headings.map((heading) => (
         <a
           href={`#${heading.slug}`}
-          style={`padding-left: ${
-            TOCPaddings[heading.depth as TOCPaddingsKeyType]
-          }px`}
-          class="text-text-primary text-base font-semibold w-fit"
+          style={`padding-left: ${TOCPaddings[heading.depth as TOCPaddingsKeyType]}px`}
+          class="dark:text-text-primary text-lightMode-text-primary text-base font-semibold w-fit"
         >
           • {heading.text}
         </a>

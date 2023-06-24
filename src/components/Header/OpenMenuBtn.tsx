@@ -13,13 +13,13 @@ const OpenMenuBtn = ({ isOpen, setOpen }: Props) => {
     >
       <div
         className={clsx(
-          "transition duration-300 w-6 h-[1px] bg-text-primary",
+          "transition duration-300 w-6 h-[1px] dark:bg-text-primary bg-lightMode-text-primary",
           isOpen && "transform rotate-[45deg]"
         )}
       ></div>
       <div
         className={clsx(
-          "transition duration-300 w-6 h-[1px] bg-text-primary",
+          "transition duration-300 w-6 h-[1px] dark:bg-text-primary bg-lightMode-text-primary",
           isOpen && "transform rotate-[-45deg]"
         )}
       ></div>

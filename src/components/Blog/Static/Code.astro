@@ -1,6 +1,6 @@
 ---
 import CopyCodeLabel from "../Interactive/CopyCodeLabel";
-import { Code } from "astro/components";
+import { Code as AstroCode } from "astro/components";
 import type { Props as CodeProps } from "astro/components/Code.astro";
 
 interface Props extends CodeProps {
@@ -19,5 +19,5 @@ const { code, lang = "ts", theme = "poimandres", codeLabel } = Astro.props;
       </div>
     )
   }
-  <Code code={code} lang={lang} theme={theme} />
+  <AstroCode code={code} lang={lang} theme={theme} />
 </div>

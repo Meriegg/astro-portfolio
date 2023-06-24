@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  darkMode: "media",
   theme: {
     extend: {
       colors: {
@@ -17,6 +18,15 @@ module.exports = {
         "hover-contrast": "rgba(255, 255, 255, 0.2)",
         "opaque-gray": "rgba(255, 255, 255, 0.3)",
         "terminal-bg": "rgba(0, 0, 0, 0.6)",
+        lightMode: {
+          "main-bg": "#FFFFFF",
+          "text-primary": "#000000",
+          "text-secondary": "#737372",
+          "hover-contrast": "rgba(0, 0, 0, 0.2)",
+          "opaque-gray": "rgba(0, 0, 0, 0.3)",
+          "dark-contrast": "#e5e5e5",
+          "green-accent": "#49BF74",
+        },
       },
       screens: {
         "2xl": { max: "1535px" },

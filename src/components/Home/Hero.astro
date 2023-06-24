@@ -2,27 +2,30 @@
   class="mt-24 h-[81vh] flex flex-col items-center justify-between p-4 relative"
   id="hero_section"
 >
-  <img src="/GridContainer.svg" class="absolute top-0 left-0 -z-10 w-full" />
   <div class="text-center flex flex-col items-center justify-center mt-12">
     <h1 class="text-8xl font-medium text-center md:text-6xl tracking-normal">
       Hello there, I'm Mario!
     </h1>
     <p
-      class="font-bold text-2xl md:text-xl text-text-secondary max-w-2xl text-center mt-4"
+      class="font-bold text-2xl md:text-xl dark:text-text-secondary text-lightMode-text-secondary max-w-2xl text-center mt-4"
     >
-      I'm an <span class="text-text-primary">✨ aspiring ✨</span> 14 year old full
-      stack developer based In Romania
+      I'm an <span class="dark:text-text-primary text-lightMode-text-primary">✨ aspiring ✨</span> 14
+      year old full stack developer based In Romania
     </p>
   </div>
   <div class="w-full flex justify-center items-center sm:justify-end sm:px-4">
     <div class="xsm:hidden flex flex-col justify-center items-center">
       <p>scroll down</p>
-      <a href="#my_work">
-        <img
+      <a
+        href="#my_work"
+        class="mt-4 motion-safe:animate-bounce dark:text-primary text-lightMode-text-primary"
+      >
+        <!-- <img
           src="icons/chevron-down.svg"
           alt="Chevron down"
-          class="mt-4 motion-safe:animate-bounce"
-        />
+          class="mt-4 motion-safe:animate-bounce dark:text-primary text-lightMode-text-primary"
+        /> -->
+        <i class="fa-solid fa-chevron-down"></i>
       </a>
     </div>
   </div>

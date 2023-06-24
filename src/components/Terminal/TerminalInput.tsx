@@ -3,13 +3,13 @@ import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 
 interface Props {
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>
+  setValue: React.Dispatch<React.SetStateAction<string>>;
   pushCommand: (val: string) => void;
   inputRef: MutableRefObject<HTMLDivElement | null>;
 }
 
 const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
-  let maxLetters = 0
+  let maxLetters = 0;
 
   const [isFocused, setFocused] = useState(false);
   const [isAnimating, setIsAnimating] = useState(true);
@@ -18,25 +18,31 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
   const valueContainerRef = useRef<HTMLPreElement | null>(null);
   const inputIndicatorRef = useRef<HTMLSpanElement | null>(null);
   const inputElementContainerRef = useRef<HTMLDivElement | null>(null);
-  
+
   const [inputIndicatorActiveIdx, setInputIndicatorActiveIndex] = useState(0);
 
   type ParsedInputKey = {
     keyIdx: number;
     letters: string[];
     val: string;
-  }
+  };
 
   const styleInputValue = (keys: ParsedInputKey[]) => {
-    let finalHTML = '';
+    let finalHTML = "";
 
     let letterIdxTrack = 0;
     keys.forEach((key) => {
       key.letters.map((letter) => {
-        finalHTML += `<span data-letter-idx=${letterIdxTrack} class="font-semibold tracking-tight ${key.keyIdx === 0 && (key.val === 'exit' ? 'text-terminal-red' : 'text-terminal-yellow')}">${letter}</span>`;
+        finalHTML += `<span data-letter-idx=${letterIdxTrack} class="font-semibold tracking-tight ${
+          key.keyIdx === 0
+            ? key.val === "exit"
+              ? "text-terminal-red"
+              : "text-terminal-yellow"
+            : "text-white"
+        }">${letter}</span>`;
         letterIdxTrack += 1;
       });
-    })
+    });
 
     maxLetters = letterIdxTrack;
 
@@ -44,25 +50,29 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
   };
 
   const decreaseIndicatorIdx = (ctrlKey: boolean) => {
-    if(inputIndicatorActiveIdx <= 0) {
-      setInputIndicatorActiveIndex(0)
+    if (inputIndicatorActiveIdx <= 0) {
+      setInputIndicatorActiveIndex(0);
       return;
-    };
+    }
 
-    if(ctrlKey) {
+    if (ctrlKey) {
       const activeLetters = document.querySelectorAll(`[data-letter-idx]`);
       const currentLetter = activeLetters[inputIndicatorActiveIdx - 1];
 
-      for (let i = parseInt(currentLetter.getAttribute("data-letter-idx") || "0") - 1; i >= 0; i--){
+      for (
+        let i = parseInt(currentLetter.getAttribute("data-letter-idx") || "0") - 1;
+        i >= 0;
+        i--
+      ) {
         const letter = activeLetters[i];
 
-        if(i === 0) {
-          setInputIndicatorActiveIndex(i)
+        if (i === 0) {
+          setInputIndicatorActiveIndex(i);
           break;
         }
-        
-        if(!letter?.textContent?.trim()) {
-          setInputIndicatorActiveIndex(i + 1)
+
+        if (!letter?.textContent?.trim()) {
+          setInputIndicatorActiveIndex(i + 1);
           break;
         }
       }
@@ -71,29 +81,33 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
     }
 
     setInputIndicatorActiveIndex((prev) => prev - 1);
-  }
+  };
 
   const increaseIndicatorIdx = (ctrlKey: boolean) => {
-    if(inputIndicatorActiveIdx >= maxLetters) {
-      setInputIndicatorActiveIndex(maxLetters)
+    if (inputIndicatorActiveIdx >= maxLetters) {
+      setInputIndicatorActiveIndex(maxLetters);
       return;
-    };
+    }
 
-    if(ctrlKey) {
+    if (ctrlKey) {
       const activeLetters = document.querySelectorAll(`[data-letter-idx]`);
       const currentLetter = activeLetters[inputIndicatorActiveIdx - 1];
 
-      for (let i = parseInt(currentLetter?.getAttribute("data-letter-idx") || "0") + 1; i < activeLetters.length; i++){
+      for (
+        let i = parseInt(currentLetter?.getAttribute("data-letter-idx") || "0") + 1;
+        i < activeLetters.length;
+        i++
+      ) {
         const letter = activeLetters[i];
-        console.log(letter)
+        console.log(letter);
 
-        if(i === activeLetters.length - 1) {
-          setInputIndicatorActiveIndex(i + 1)
+        if (i === activeLetters.length - 1) {
+          setInputIndicatorActiveIndex(i + 1);
           break;
         }
-        
-        if(!letter?.textContent?.trim()) {
-          setInputIndicatorActiveIndex(i + 1)
+
+        if (!letter?.textContent?.trim()) {
+          setInputIndicatorActiveIndex(i + 1);
           break;
         }
       }
@@ -102,12 +116,11 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
     }
 
     setInputIndicatorActiveIndex((prev) => prev + 1);
-  }
+  };
 
   const parseInputValueToTags = (value: string) => {
-
-    if(!value) return;
-    const parseRegex= /(\s+)/;
+    if (!value) return;
+    const parseRegex = /(\s+)/;
     const splitKeys = value.split(parseRegex);
 
     let keys: ParsedInputKey[] = [];
@@ -116,14 +129,14 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
       keys.push({
         keyIdx: idx,
         letters: key.split(""),
-        val: key
-      })
-    })
+        val: key,
+      });
+    });
 
     const inputHTML = styleInputValue(keys);
 
     return inputHTML;
-  }
+  };
 
   useEffect(() => {
     if (!inputIndicatorRef.current || !valueContainerRef.current) {
@@ -137,12 +150,13 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
 
     const diff = maxLetters - inputIndicatorActiveIdx;
 
-    const valueContainerRects =
-      valueContainerRef.current.getBoundingClientRect();
-    inputIndicatorRef.current.style.left = `${valueContainerRects.width - (activeLetterRects?.width || 0) * diff}px`;
+    const valueContainerRects = valueContainerRef.current.getBoundingClientRect();
+    inputIndicatorRef.current.style.left = `${
+      valueContainerRects.width - (activeLetterRects?.width || 0) * diff
+    }px`;
 
-    console.log('activeIdx ', inputIndicatorActiveIdx);
-    console.log('maxLetters ', maxLetters)
+    console.log("activeIdx ", inputIndicatorActiveIdx);
+    console.log("maxLetters ", maxLetters);
 
     setIsAnimating(false);
     const resetTimeout = setTimeout(() => {
@@ -161,12 +175,12 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
   }, []);
 
   return (
-    <div className="flex" ref={inputRef}>
+    <div className="flex" tabIndex={-1} ref={inputRef}>
       <span>
         <span className="text-terminal-green">root@mariodev.vercel.app</span>
-        <span>:</span>
+        <span className="text-white">:</span>
         <span className="text-terminal-blue">~/home</span>
-        <span className="mt-1">$</span>
+        <span className="mt-1 text-white">$</span>
       </span>
       <div className="relative w-full" ref={inputElementContainerRef}>
         <input
@@ -178,45 +192,44 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
           onBlur={() => setFocused(false)}
           onChange={(e) => {
             let prevVal = e.target.value;
-            setValue(() => e.target.value); 
+            setValue(() => e.target.value);
 
             const prevValLen = prevVal.length;
             const valLen = value.length;
             maxLetters = prevValLen;
 
-            if(prevValLen > valLen) {
-              increaseIndicatorIdx(false)
+            if (prevValLen > valLen) {
+              increaseIndicatorIdx(false);
             }
           }}
           onKeyDown={(key) => {
             const isBackSpace = key.code.toLowerCase() === "backspace" || key.keyCode === 8;
-            const isArrowLeft = key.code.toLowerCase() === 'arrowleft' || key.keyCode === 37;
-            const isArrowRight = key.code.toLowerCase() === 'arrowright' || key.keyCode === 39
-            const isEnter = key.code.toLowerCase() === "enter" || key.keyCode === 13
+            const isArrowLeft = key.code.toLowerCase() === "arrowleft" || key.keyCode === 37;
+            const isArrowRight = key.code.toLowerCase() === "arrowright" || key.keyCode === 39;
+            const isEnter = key.code.toLowerCase() === "enter" || key.keyCode === 13;
 
-            if(isBackSpace) {
+            if (isBackSpace) {
               decreaseIndicatorIdx(key.ctrlKey);
               return;
             }
-            
+
             if (isEnter) {
               if (inputIndicatorRef.current) {
                 inputIndicatorRef.current.id = "invalidIndicator";
-                inputIndicatorRef.current.style.left = '0px'
+                inputIndicatorRef.current.style.left = "0px";
               }
 
               pushCommand(value);
               setValue("");
             }
 
-
-            if(isArrowLeft) {
-              decreaseIndicatorIdx(key.ctrlKey)
+            if (isArrowLeft) {
+              decreaseIndicatorIdx(key.ctrlKey);
               return;
             }
-            
-            if(isArrowRight) {
-              increaseIndicatorIdx(key.ctrlKey)
+
+            if (isArrowRight) {
+              increaseIndicatorIdx(key.ctrlKey);
               return;
             }
           }}
@@ -225,7 +238,7 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
           ref={valueContainerRef}
           className="absolute top-0 left-0 h-full z-10 text-white ml-1 w-fit"
           dangerouslySetInnerHTML={{
-            __html: parseInputValueToTags(value) || ""
+            __html: parseInputValueToTags(value) || "",
           }}
         />
         {isFocused ? (

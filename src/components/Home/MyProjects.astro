@@ -2,7 +2,7 @@
 import Project from "./Project.astro";
 ---
 
-<section id="my_work" class="h-auto mt-20 sectionPadding">
+<section id="my_work" class="h-auto mt-20 sectionPadding relative">
   <div class="w-full flex md:flex-col justify-between items-end gap-2">
     <h1 class="text-4xl font-semibold tracking-normal leading-[1em]">
       Here are a few of my projects
@@ -10,7 +10,7 @@ import Project from "./Project.astro";
     <div class="flex-grow h-[1px] bg-text-secondary md:hidden"></div>
     <a
       href="#contact_me"
-      class="text-base md:mt-4 text-text-secondary hover:text-text-primary font-bold hover:underline decoration-2 leading-[1em]"
+      class="text-base md:mt-4 dark:text-text-secondary text-lightMode-text-secondary hover:dark:text-text-primary hover:text-lightMode-text-primary font-bold hover:underline decoration-2 leading-[1em]"
       >Contact me</a
     >
   </div>
