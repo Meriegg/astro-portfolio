@@ -11,7 +11,24 @@ import Contact from "../components/Home/Contact.astro";
 
 <Layout>
   <QuickContact />
+  <style>
+    main {
+      background-image: url("/PageGridLight.svg");
+      background-size: cover;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      main {
+        background-image: url("/PageGrid.svg");
+        background-size: cover;
+      }
+    }
+  </style>
   <main>
+    <div
+      class="w-full h-full fixed top-0 left-0 bg-gradient-to-b dark:from-black dark:via-transparent dark:to-black z-0 from-white via-transparent to-white"
+    >
+    </div>
     <Hero />
     <MyProjects />
     <Contact />

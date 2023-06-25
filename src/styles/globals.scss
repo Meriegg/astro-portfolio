@@ -14,7 +14,7 @@
   }
 
   body {
-    @apply bg-main-bg;
+    @apply dark:bg-main-bg bg-lightMode-main-bg;
   }
 
   section {
@@ -41,14 +41,14 @@
     font-family: "Clash Display";
     letter-spacing: 0.04em;
 
-    @apply text-text-primary;
+    @apply dark:text-text-primary text-lightMode-text-primary;
   }
 }
 
 @layer components {
   .quickContactItem {
     .quickContactItemIcon {
-      @apply m-1 bg-text-primary transition duration-300;
+      @apply m-1 dark:bg-text-primary bg-lightMode-text-primary transition duration-300;
     }
 
     &::after {
@@ -60,7 +60,7 @@
     &:hover,
     &:focus {
       .quickContactItemIcon {
-        @apply bg-dark-contrast;
+        @apply dark:bg-dark-contrast bg-lightMode-dark-contrast;
       }
 
       &::after {

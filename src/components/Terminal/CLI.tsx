@@ -16,11 +16,7 @@ const CLI = ({ setOpen }: Props) => {
   const inputRef = useRef<HTMLDivElement | null>(null);
 
   const pushCommand = (output: string, plainOutput?: boolean) => {
-    if (
-      !terminalRef.current ||
-      !inputRef.current ||
-      !terminalContainerRef.current
-    ) {
+    if (!terminalRef.current || !inputRef.current || !terminalContainerRef.current) {
       return;
     }
 
@@ -66,14 +62,13 @@ const CLI = ({ setOpen }: Props) => {
     // Create the element that is going to display
     // the output for the command
     const elem = document.createElement("pre");
-    elem.className = "font-fira";
+    elem.className = "font-fira text-white";
     elem.innerHTML = plainOutput ? output : commandOutput;
 
     // Mount the element and automatically scroll to the bottom
     // of the container
     terminalRef.current.appendChild(elem);
-    terminalContainerRef.current.scrollTop =
-      terminalContainerRef.current.scrollHeight;
+    terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
   };
 
   // Code for the History feature
@@ -105,8 +100,7 @@ const CLI = ({ setOpen }: Props) => {
   useEffect(() => {
     window.addEventListener("keydown", commandHistoryEventCallback);
 
-    return () =>
-      window.removeEventListener("keydown", commandHistoryEventCallback);
+    return () => window.removeEventListener("keydown", commandHistoryEventCallback);
   }, []);
 
   // When the command history index changes / The user presses
@@ -137,13 +131,8 @@ const CLI = ({ setOpen }: Props) => {
       style={{ width: "min(750px, 100%)" }}
     >
       <div className="w-full flex items-center justify-between border-b-[1px] border-b-opaque-gray pl-5">
-        <p className="text-text-secondary font-semibold">
-          root@mariodev.vercel.app
-        </p>
-        <button
-          className="px-5 py-4 hover:bg-opaque-gray"
-          onClick={() => setOpen(false)}
-        >
+        <p className="text-text-secondary font-semibold">root@mariodev.vercel.app</p>
+        <button className="px-5 py-4 hover:bg-opaque-gray" onClick={() => setOpen(false)}>
           <img src="/icons/x-close-icon.svg" alt="" />
         </button>
       </div>
@@ -151,7 +140,7 @@ const CLI = ({ setOpen }: Props) => {
         ref={terminalContainerRef}
         className="h-auto bg-terminal-bg flex flex-col px-5 py-2 pb-3 overflow-y-auto custom-scrollbar cli-output"
       >
-        <pre id="TERMINAL_CONTENT" ref={terminalRef}></pre>
+        <pre id="TERMINAL_CONTENT" className="!text-white" ref={terminalRef}></pre>
         <TerminalInput
           inputRef={inputRef}
           pushCommand={pushCommand}

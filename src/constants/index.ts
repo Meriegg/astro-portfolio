@@ -11,7 +11,7 @@ import {
 } from "../config";
 
 export const CREDENTIAL_COMMAND_OUTPUT = `
-mariodev.vercel.app [Version 1.0.0]
+mariodev.vercel.app [Version 2.0.0]
 (c) Site developed and deployed by me. All rights reserved.
 
 Welcome to my website!
