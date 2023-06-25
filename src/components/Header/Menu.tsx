@@ -19,10 +19,8 @@ const Menu = () => {
         ? createPortal(
             <div
               className={clsx(
-                "transform transition duration-300 fixed top-0 left-0 w-full h-full bg-black",
-                isMenuOpen
-                  ? "translate-x-0 z-10 opacity-100"
-                  : "-translate-x-6 -z-10 opacity-0"
+                "transform transition duration-300 fixed top-0 left-0 w-full h-full dark:bg-black bg-lightMode-main-bg",
+                isMenuOpen ? "translate-x-0 z-10 opacity-100" : "-translate-x-6 -z-10 opacity-0"
               )}
             >
               <div className="h-full flex flex-col gap-6 justify-center px-6">
