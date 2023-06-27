@@ -5,8 +5,8 @@ import {
   GITHUB_LINK,
   EMAIL_LINK,
   TWITTER_LINK,
-  SOURCE_LINK,
-} from "../../../config";
+} from "@mariodev14/socials";
+import { SOURCE_LINK } from "@src/config";
 import type { CommandArgsType } from "../../../types";
 
 export const CreateError = (errorMessage: string) =>
