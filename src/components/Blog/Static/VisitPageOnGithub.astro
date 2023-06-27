@@ -1,4 +1,5 @@
 ---
+import { getLastPathOfURL } from "@src/utils/getLastPathOfURL";
 import { AccentButton, GhostButton } from "../Interactive/Buttons";
 import { BLOG_POST_SOURCE, SOURCE_LINK } from "../../../config";
 
@@ -13,15 +14,15 @@ const { url } = Astro.props;
   <div class="flex flex-col gap-2">
     <h1 class="text-2xl font-semibold">Found a mistake?</h1>
     <p>
-      If you find any mistakes or think that you can bring any improvements
-      please consider contributing to the open source repository!
+      If you find any mistakes or think that you can bring any improvements please consider
+      contributing to the open source repository!
     </p>
   </div>
 
   <div class="flex flex-wrap gap-4 items-center">
     {
-      url ? (
-        <a href={`${BLOG_POST_SOURCE}${url}.mdx`}>
+      url && getLastPathOfURL(url) ? (
+        <a href={`${BLOG_POST_SOURCE}/${getLastPathOfURL(url)}`}>
           <AccentButton>Visit this page on github!</AccentButton>
         </a>
       ) : (

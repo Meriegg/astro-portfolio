@@ -7,8 +7,8 @@ import {
   GITHUB_USERNAME,
   TWITTER_LINK,
   TWITTER_USERNAME,
-  SOURCE_LINK,
-} from "../config";
+} from "@mariodev14/socials";
+import { SOURCE_LINK } from "@src/config";
 
 export const CREDENTIAL_COMMAND_OUTPUT = `
 mariodev.vercel.app [Version 2.0.0]

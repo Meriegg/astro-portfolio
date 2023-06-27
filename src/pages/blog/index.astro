@@ -1,8 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import BlogPostPreview from "../../components/Blog/Static/BlogPostPreview.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
-const blogPosts = await Astro.glob("./posts/**/*.{md,mdx}");
+const blogPosts: CollectionEntry<"blogPosts">[] = await getCollection("blogPosts");
 ---
 
 <Layout title={"MarioDev | Blog"} description={"Welcome to my blog!"}>
@@ -15,15 +16,15 @@ const blogPosts = await Astro.glob("./posts/**/*.{md,mdx}");
     <hr class="border-none h-[1px] dark:bg-dark-contrast bg-lightMode-dark-contrast" />
     <div class="grid grid-cols-2 gap-20 lg:grid-cols-1">
       {
-        blogPosts.map(({ frontmatter, url }) => (
+        blogPosts.map(({ data, slug }) => (
           <BlogPostPreview
-            author={frontmatter.author}
-            pubDate={frontmatter.pubDate}
-            description={frontmatter.description}
-            tags={frontmatter.tags}
-            title={frontmatter.title}
-            url={url}
-            authorSocialLink={frontmatter.authorSocialLink}
+            author={data.author}
+            pubDate={data.pubDate}
+            description={data.description}
+            tags={data.tags}
+            title={data.title}
+            url={`/blog/post/${slug}`}
+            authorSocialLink={data.authorSocialLink}
           />
         ))
       }

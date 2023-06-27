@@ -8,6 +8,7 @@ import TableOfContents from "../components/Blog/TableOfContents.astro";
 import PortalContainers from "../components/PortalContainers.astro";
 import ShareArticleFooter from "../components/Blog/Interactive/ShareArticleFooter";
 import VisitPageOnGithub from "../components/Blog/Static/VisitPageOnGithub.astro";
+import { BASE_KEYWORDS } from "../config";
 import type { BlogProps } from "../types/index";
 
 type Props = BlogProps;
@@ -20,7 +21,7 @@ const {
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} keywords={[...BASE_KEYWORDS, ...tags]} />
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1846210135713091"
@@ -91,6 +92,7 @@ const {
         <hr />
         <ShareArticleFooter client:visible url={url} />
         <VisitPageOnGithub url={url} />
+        <p>{url}</p>
         <hr />
       </article>
     </main>
