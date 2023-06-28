@@ -8,10 +8,10 @@ import {
   TWITTER_LINK,
   TWITTER_USERNAME,
 } from "@mariodev14/socials";
-import { SOURCE_LINK } from "@src/config";
+import { SOURCE_LINK, WEBSITE_VER } from "@src/config";
 
 export const CREDENTIAL_COMMAND_OUTPUT = `
-mariodev.vercel.app [Version 2.0.0]
+mariodev.vercel.app [Version ${WEBSITE_VER}]
 (c) Site developed and deployed by me. All rights reserved.
 
 Welcome to my website!
