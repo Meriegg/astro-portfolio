@@ -38,16 +38,34 @@ const ContactCopy = ({ copyText, displayText, opaqueText = "", visitLink, label 
               }, 2500);
             }}
           >
-            <button className="px-[20px] py-[10px] font-semibold dark:bg-dark-contrast bg-lightMode-dark-contrast hover:dark:bg-hover-contrast hover:bg-lightMode-hover-contrast flex-grow">
+            <button
+              aria-label={`Copy ${label} information to clipboard`}
+              role="button"
+              className="px-[20px] py-[10px] font-semibold dark:bg-dark-contrast bg-lightMode-dark-contrast hover:dark:bg-hover-contrast hover:bg-lightMode-hover-contrast flex-grow"
+            >
               {didCopy ? "Copied!" : "Copy"}
             </button>
           </CopyToClipboard>
           {visitLink ? (
             <div className="flex flex-grow gap-0">
-              <div className="h-full w-[1px] dark:bg-opaque-gray bg-lightMode-opaque-gray"></div>
-              <a href={visitLink} className="w-full">
-                <button className="w-full px-[20px] py-[10px] font-semibold dark:bg-dark-contrast bg-lightMode-dark-contrast hover:dark:bg-hover-contrast hover:bg-lightMode-hover-contrast flex-grow">
-                  visit
+              <div
+                aria-orientation="vertical"
+                aria-label="Vertical bar for styling purposes"
+                className="h-full w-[1px] dark:bg-opaque-gray bg-lightMode-opaque-gray"
+              ></div>
+              <a
+                href={visitLink}
+                role="link"
+                aria-labelledby={`visitContactLink_${label}`}
+                className="w-full"
+              >
+                <button
+                  id={`visitContactLink_${label}`}
+                  aria-label={`Visit the link for ${label}`}
+                  role="link"
+                  className="w-full px-[20px] py-[10px] font-semibold dark:bg-dark-contrast bg-lightMode-dark-contrast hover:dark:bg-hover-contrast hover:bg-lightMode-hover-contrast flex-grow"
+                >
+                  Visit
                 </button>
               </a>
             </div>

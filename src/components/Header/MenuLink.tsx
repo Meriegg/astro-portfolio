@@ -5,7 +5,7 @@ interface Props {
 
 const MenuLink = ({ text, href }: Props) => {
   return (
-    <a href={href} className="text-4xl font-semibold">
+    <a role="menuitem" href={href} className="text-4xl font-semibold">
       {text}
     </a>
   );

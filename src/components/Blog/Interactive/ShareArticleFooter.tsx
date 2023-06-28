@@ -30,7 +30,9 @@ const ShareArticleFooter = ({ url }: Props) => {
             }, 3000);
           }}
         >
-          <AccentButton>{didCopy ? "Link copied!" : "Share!"}</AccentButton>
+          <AccentButton aria-label="Copy article link">
+            {didCopy ? "Link copied!" : "Share!"}
+          </AccentButton>
         </CopyToClipboard>
       ) : (
         <p>There was a problem loading the link for this page!</p>

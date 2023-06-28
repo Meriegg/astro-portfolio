@@ -13,7 +13,7 @@ const Menu = () => {
   }, []);
 
   return (
-    <div className="hidden sm:block">
+    <div className="hidden sm:block" role="menu">
       <OpenMenuBtn isOpen={isMenuOpen} setOpen={setIsMenuOpen} />
       {isMounted
         ? createPortal(
@@ -23,10 +23,10 @@ const Menu = () => {
                 isMenuOpen ? "translate-x-0 z-10 opacity-100" : "-translate-x-6 -z-10 opacity-0"
               )}
             >
-              <div className="h-full flex flex-col gap-6 justify-center px-6">
+              <nav role="navigation" className="h-full flex flex-col gap-6 justify-center px-6">
                 <MenuLink href="/" text="Home" />
                 <MenuLink href="/blog" text="My Blog" />
-              </div>
+              </nav>
             </div>,
             document.getElementById("MENU_PORTAL") as HTMLElement
           )

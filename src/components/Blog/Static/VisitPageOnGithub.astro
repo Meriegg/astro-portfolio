@@ -22,15 +22,30 @@ const { url } = Astro.props;
   <div class="flex flex-wrap gap-4 items-center">
     {
       url && getLastPathOfURL(url) ? (
-        <a href={`${BLOG_POST_SOURCE}/${getLastPathOfURL(url)}`}>
-          <AccentButton>Visit this page on github!</AccentButton>
+        <a
+          aria-labelledby="visitPageOnGithubButton"
+          href={`${BLOG_POST_SOURCE}/${getLastPathOfURL(url)}`}
+        >
+          <AccentButton
+            id="visitPageOnGithubButton"
+            aria-label="Visit this page on Github"
+            role="link"
+          >
+            Visit this page on GitHub!
+          </AccentButton>
         </a>
       ) : (
-        <p>There was a problem getting the url for this page!</p>
+        <p>Error: There was a problem getting the URL for this page!</p>
       )
     }
-    <a href={SOURCE_LINK}>
-      <GhostButton>Visit website source code</GhostButton>
+    <a aria-labelledby="visitWebsiteSource" href={SOURCE_LINK}>
+      <GhostButton
+        id="visitWebsiteSource"
+        role="link"
+        aria-label="Visit the source code of this whole website"
+      >
+        Visit website source code
+      </GhostButton>
     </a>
   </div>
 </div>

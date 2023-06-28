@@ -9,31 +9,57 @@ const links = [
   {
     href: GITHUB_LINK,
     icon: GithubLogo,
+    name: "Visit Github",
   },
   {
     href: INSTAGRAM_LINK,
     icon: InstagramLogo,
+    name: "Visit Instagram",
   },
   {
     href: TWITTER_LINK,
     icon: TwitterIcon,
+    name: "Visit Twitter",
   },
   {
     href: EMAIL_LINK,
     icon: EmailIcon,
+    name: "Visit Email",
   },
 ];
 ---
 
 <div class="fixed left-12 bottom-16 flex flex-col gap-2 z-10 md:left-6">
-  <p class="text-sm font-semibold dark:text-text-secondary text-lightMode-text-secondary">
+  <p
+    role="complementary"
+    aria-label="Quick Contact"
+    class="text-sm font-semibold dark:text-text-secondary text-lightMode-text-secondary"
+  >
     {"<QuickContact />"}
   </p>
   <div class="flex gap-3">
     {
       links.map((link) => (
-        <a href={link.href} class="quickContactItem" target="_blank">
+        <a
+          title={link.name}
+          role="link"
+          aria-labelledby={`quickContact_${link.name}_item`}
+          href={link.href}
+          class="quickContactItem"
+          target="_blank"
+        >
           <div
+            aria-hidden={true}
+            role="complementary"
+            aria-label="Visit link text"
+            class="hidden fixed top-0 left-0"
+            id={`quickContact_${link.name}_item`}
+          >
+            {link.name}
+          </div>
+          <div
+            role="figure"
+            aria-label="Contact link icon"
             class="quickContactItemIcon w-6 h-6"
             style={`mask: url("${link.icon}"); -webkit-mask: url("${link.icon}");`}
           />

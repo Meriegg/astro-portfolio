@@ -127,20 +127,32 @@ const CLI = ({ setOpen }: Props) => {
 
   return (
     <div
+      aria-label="The whole terminal window"
+      role="menu"
       className="max-h-[90vh] bg-dark-contrast flex flex-col overflow-hidden rounded-[20px]"
       style={{ width: "min(750px, 100%)" }}
     >
       <div className="w-full flex items-center justify-between border-b-[1px] border-b-opaque-gray pl-5">
         <p className="text-text-secondary font-semibold">root@mariodev.vercel.app</p>
-        <button className="px-5 py-4 hover:bg-opaque-gray" onClick={() => setOpen(false)}>
-          <img src="/icons/x-close-icon.svg" alt="" />
+        <button
+          aria-label="Close the terminal"
+          role="button"
+          className="px-5 py-4 hover:bg-opaque-gray"
+          onClick={() => setOpen(false)}
+        >
+          <img src="/icons/x-close-icon.svg" alt="X" aria-label="Close the terminal icon" />
         </button>
       </div>
       <div
         ref={terminalContainerRef}
         className="h-auto bg-terminal-bg flex flex-col px-5 py-2 pb-3 overflow-y-auto custom-scrollbar cli-output"
       >
-        <pre id="TERMINAL_CONTENT" className="!text-white" ref={terminalRef}></pre>
+        <pre
+          id="TERMINAL_CONTENT"
+          aria-label="Terminal content output"
+          className="!text-white"
+          ref={terminalRef}
+        ></pre>
         <TerminalInput
           inputRef={inputRef}
           pushCommand={pushCommand}

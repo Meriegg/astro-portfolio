@@ -21,7 +21,10 @@ const CopyCodeLabel = ({ label, code }: Props) => {
           }, 2500);
         }}
       >
-        <button className="!text-xs tracking-tight text-white font-semibold px-2 py-1 hover:bg-neutral-800 rounded-sm">
+        <button
+          aria-label="Copy file path"
+          className="!text-xs tracking-tight text-white font-semibold px-2 py-1 hover:bg-neutral-800 rounded-sm"
+        >
           {didCopyLabel ? "Copied!" : "Copy Path"}
         </button>
       </CopyToClipboard>
@@ -35,7 +38,10 @@ const CopyCodeLabel = ({ label, code }: Props) => {
           }, 2500);
         }}
       >
-        <button className="!text-xs tracking-tight font-semibold text-white px-2 py-1 hover:bg-neutral-800 rounded-sm">
+        <button
+          aria-label="Copy code"
+          className="!text-xs tracking-tight font-semibold text-white px-2 py-1 hover:bg-neutral-800 rounded-sm"
+        >
           {didCopyCode ? "Copied!" : "Copy Code"}
         </button>
       </CopyToClipboard>

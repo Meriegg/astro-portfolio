@@ -21,6 +21,7 @@ const TerminalInput = ({ value, setValue, pushCommand, inputRef }: Props) => {
       </span>
       <div className="relative w-full" ref={inputElementContainerRef}>
         <input
+          aria-label="Input for the terminal command"
           type="text"
           value={value}
           ref={inputElementRef}
