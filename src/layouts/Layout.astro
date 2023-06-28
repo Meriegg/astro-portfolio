@@ -4,6 +4,7 @@ import Header from "../components/Header/Header.astro";
 import BaseHead from "../components/BaseHead.astro";
 import PortalContainers from "../components/PortalContainers.astro";
 import CursorBubble from "@src/components/Effects/CursorBubble.astro";
+import { GoogleAnalyticsAlert } from "@src/components/Other/GoogleAnalyticsAlert";
 
 interface Props {
   title?: string;
@@ -28,9 +29,21 @@ const { title, description } = Astro.props;
   >
 
   <body class="overflow-x-hidden">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDCXDLTXBN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QDCXDLTXBN");
+    </script>
     <CursorBubble />
     <Header />
     <slot />
     <PortalContainers />
+    <GoogleAnalyticsAlert client:idle />
   </body>
 </html>
