@@ -206,6 +206,13 @@ declare module 'astro:content' {
   collection: "blogPosts";
   data: InferEntrySchema<"blogPosts">
 } & { render(): Render[".mdx"] };
+"moving-to-content-dir.mdx": {
+	id: "moving-to-content-dir.mdx";
+  slug: "moving-to-content-dir";
+  body: string;
+  collection: "blogPosts";
+  data: InferEntrySchema<"blogPosts">
+} & { render(): Render[".mdx"] };
 "typescript-paths.mdx": {
 	id: "typescript-paths.mdx";
   slug: "typescript-paths";

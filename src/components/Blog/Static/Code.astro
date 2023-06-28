@@ -5,6 +5,7 @@ import type { Props as CodeProps } from "astro/components/Code.astro";
 
 interface Props extends CodeProps {
   codeLabel?: string;
+  removeInteraction?: boolean;
 }
 
 const { code, lang = "ts", theme = "poimandres", codeLabel } = Astro.props;
@@ -14,7 +15,7 @@ const { code, lang = "ts", theme = "poimandres", codeLabel } = Astro.props;
   {
     codeLabel && (
       <div class="codeLabel flex items-center justify-between">
-        <p class="!text-sm !font-fira text-text-secondary">{codeLabel}</p>
+        <p class="!text-sm !font-fira text-white">{codeLabel}</p>
         <CopyCodeLabel code={code} label={codeLabel} client:visible />
       </div>
     )

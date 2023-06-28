@@ -1,0 +1,85 @@
+---
+layout: "@layouts/BlogPost.astro"
+title: "Configuring my blog to use Astro's new content directory"
+author: "MarioDev"
+authorSocialLink: "https://mariodev.vercel.app"
+pubDate: "28/06/2023"
+updatedOn: null
+description: "Find out what problems I faced when I tried to configure my blog to use Astro's new content directory and how I fixed them!"
+tags: ["problems", "astro", "general"]
+---
+
+import Code from "@blogUi/Static/Code.astro";
+
+# Hello There
+
+Today I encountered some problems trying to configure my blog to use [Astro's new content directory](https://docs.astro.build/en/guides/content-collections/)
+and I thought someone else might be facing the same problem in the future, so here I am.
+
+# What happened?
+
+After I created an NPM Package for managing my social and contact links throughout my project, I decided to
+configure this website to use it as well, since this is the most important source of my contact details.
+
+After I was done I tried to test the website and ran `yarn dev`, everything worked fine in development so I tried building the site
+using the `yarn build` and all of a sudden Astro decided to give me this error:
+
+<Code
+  code={`error The argument 'path' must be a string or Uint8Array without null bytes. Received '\x00@astro-page:src/pages/blog/posts/tsconfigPaths@_@mdx'`}
+/>
+
+Keep in mind that while I was developing new features and bug fixes for this website, I did not face this problem, but
+somehow now was the time for this bug to show up.
+
+Okay, I banged my head on the keyboard for 15 minutes searching for a fix - I found nothing.
+
+I decided that it's time to move to the new content directory and use the new functions Astro provides
+since `Astro.glob` might be outdated and might be the reason for this error.
+
+I did that and it was pretty easy, all I did was create a `content` directory inside my source folder, create a `config.ts` file
+inside the `content` directory and define a collection inside it using zod.
+
+Here is the `config.ts` file:
+
+<Code
+code={`import { defineCollection, z } from 'astro:content';\n
+const blog = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    author: z.string(),
+    pubDate: z.string(),
+    updatedOn: z.string().optional().nullable(),
+    description: z.string(),
+    authorSocialLink: z.string().optional(),
+    tags: z.array(z.string()),
+  })
+});
+
+export const collections = {
+  'blogPosts': blog,
+};
+`}
+codeLabel="config.ts"
+/>
+
+One thing to remember is that if you get any error importing `astro:content` always run `yarn astro sync`.
+
+After that I created the `blogPosts` directory and moved my `.mdx` files inside it. All good right?
+Well, it fixed the first error, but now it started telling me `.mdx` files were unsupported, and all
+blog routes with a `.mdx` extension (basically all of them) were giving 404 errors and not showing up in
+the blog page.
+
+# The fix
+
+For one hour I tried everything, from reinstalling the mdx plugin using `yarn astro add mdx`, to
+updating Astro again, to searching for related issues on Github but nothing worked.
+
+I spun up a new barebones Astro project quickly so I can test if I will get the same error on a new
+project.
+
+I added the mdx plugin, I configured the content directory and created all the routes using `getStaticPaths` and
+it worked.
+
+That's when I tried running `yarn add @astrojs/mdx`, updating the mdx plugin directly, not using `yarn astro add mdx`
+and it worked, everything went fine.
