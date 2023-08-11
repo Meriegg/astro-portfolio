@@ -6,7 +6,10 @@ import { getCollection, type CollectionEntry } from "astro:content";
 const blogPosts: CollectionEntry<"blogPosts">[] = await getCollection("blogPosts");
 ---
 
-<Layout title={"MarioDev | Blog"} description={"Welcome to my blog!"}>
+<Layout
+  title={"MarioDev | Blog"}
+  description={"Hello, my name is Mario, I am a 15 year old full stack developer and this is my blog!"}
+>
   <main class="mt-32 sectionPadding2x flex flex-col gap-8">
     <div class="max-w-[400px] flex flex-col gap-4">
       <h1 class="text-3xl font-bold dark:text-text-primary text-lightMode-text-primary">
