@@ -42,7 +42,7 @@ Here is a list of all things you can do:
 export const ABOUT_COMMAND_OUTPUT = `
 Hi there, I am <span class="text-terminal-blue">Mario</span>!
 
-I am a 14 year old full stack developer based in Romania. I can build Backends, Web Apps, and Mobile apps from scratch using modern technologies that won't give you a headache in production.
+I am a 15 year old full stack developer based in Romania. I can build Backends, Web Apps, and Mobile apps from scratch using modern technologies that won't give you a headache in production.
 You can contact me by closing this terminal and going to the <span class="text-terminal-blue">contact section</span> on my website or by typing <span class="text-terminal-blue">contact</span> in this terminal.
 
 `;
