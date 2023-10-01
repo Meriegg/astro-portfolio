@@ -14,7 +14,7 @@ const ContactCopy = ({ copyText, displayText, opaqueText = "", visitLink, label 
   const [didCopy, setDidCopy] = useState(false);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full">
       <p className="text-sm font-semibold tracking-normal dark:text-text-secondary text-lightMode-text-secondary m-0">
         {label}
       </p>

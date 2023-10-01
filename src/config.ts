@@ -6,4 +6,4 @@ export const SOURCE_LINK = "https://github.com/Meriegg/astro-portfolio";
 export const GOOGLE_PRIVACY_POLICY = "https://policies.google.com/technologies/partner-sites"
 export const BLOG_POST_SOURCE = `${SOURCE_LINK}/blob/master/src/content/blogPosts`;
 
-export const WEBSITE_VER = "2.0.2"
+export const WEBSITE_VER = "2.0.3"

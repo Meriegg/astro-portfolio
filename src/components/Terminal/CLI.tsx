@@ -1,5 +1,6 @@
 import TerminalInput from "./TerminalInput";
 import commandRunner from "./logic/commandRunner";
+import { AccentButton } from "../Blog/Interactive/Buttons";
 import { COMMAND_OUTPUTS } from "../../constants";
 import { useRef, useEffect, useState, useCallback } from "react";
 
@@ -11,12 +12,18 @@ const CLI = ({ setOpen }: Props) => {
   const [commandVal, setCommandVal] = useState("");
   const [commandHistory, setCommandHistory] = useState<string[]>([""]);
   const [commandHistoryIdx, setCommandHistoryIdx] = useState(0);
+  const [isScreenWidthDisclaimerOpen, setScreenWidthDisclaimerOpen] =
+    useState(false);
   const terminalRef = useRef<HTMLPreElement | null>(null);
   const terminalContainerRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLDivElement | null>(null);
 
   const pushCommand = (output: string, plainOutput?: boolean) => {
-    if (!terminalRef.current || !inputRef.current || !terminalContainerRef.current) {
+    if (
+      !terminalRef.current ||
+      !inputRef.current ||
+      !terminalContainerRef.current
+    ) {
       return;
     }
 
@@ -68,7 +75,8 @@ const CLI = ({ setOpen }: Props) => {
     // Mount the element and automatically scroll to the bottom
     // of the container
     terminalRef.current.appendChild(elem);
-    terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
+    terminalContainerRef.current.scrollTop =
+      terminalContainerRef.current.scrollHeight;
   };
 
   // Code for the History feature
@@ -98,9 +106,21 @@ const CLI = ({ setOpen }: Props) => {
   }, []);
 
   useEffect(() => {
+    if (
+      window.innerWidth < 700 &&
+      JSON.parse(
+        localStorage.getItem("WAS_TERMINAL_SUPPORT_WARNED") || "false"
+      ) === false
+    ) {
+      localStorage.setItem("WAS_TERMINAL_SUPPORT_WARNED", "true");
+
+      setScreenWidthDisclaimerOpen(true);
+    }
+
     window.addEventListener("keydown", commandHistoryEventCallback);
 
-    return () => window.removeEventListener("keydown", commandHistoryEventCallback);
+    return () =>
+      window.removeEventListener("keydown", commandHistoryEventCallback);
   }, []);
 
   // When the command history index changes / The user presses
@@ -126,41 +146,61 @@ const CLI = ({ setOpen }: Props) => {
   }, []);
 
   return (
-    <div
-      aria-label="The whole terminal window"
-      role="menu"
-      className="max-h-[90vh] bg-dark-contrast flex flex-col overflow-hidden rounded-[20px]"
-      style={{ width: "min(750px, 100%)" }}
-    >
-      <div className="w-full flex items-center justify-between border-b-[1px] border-b-opaque-gray pl-5">
-        <p className="text-text-secondary font-semibold">root@mariodev.vercel.app</p>
-        <button
-          aria-label="Close the terminal"
-          role="button"
-          className="px-5 py-4 hover:bg-opaque-gray"
-          onClick={() => setOpen(false)}
-        >
-          <img src="/icons/x-close-icon.svg" alt="X" aria-label="Close the terminal icon" />
-        </button>
-      </div>
+    <>
       <div
-        ref={terminalContainerRef}
-        className="h-auto bg-terminal-bg flex flex-col px-5 py-2 pb-3 overflow-y-auto custom-scrollbar cli-output"
+        aria-label="The whole terminal window"
+        role="menu"
+        className="max-h-[90vh] bg-dark-contrast relative flex flex-col overflow-hidden rounded-[20px]"
+        style={{ width: "min(750px, 100%)" }}
       >
-        <pre
-          id="TERMINAL_CONTENT"
-          aria-label="Terminal content output"
-          className="!text-white"
-          ref={terminalRef}
-        ></pre>
-        <TerminalInput
-          inputRef={inputRef}
-          pushCommand={pushCommand}
-          setValue={setCommandVal}
-          value={commandVal}
-        />
+        <div className="w-full relative z-50 flex items-center justify-between border-b-[1px] border-b-opaque-gray pl-5">
+          <p className="text-text-secondary font-semibold">
+            root@mariodev.vercel.app
+          </p>
+          <button
+            aria-label="Close the terminal"
+            role="button"
+            className="px-5 py-4 hover:bg-opaque-gray"
+            onClick={() => setOpen(false)}
+          >
+            <img
+              src="/icons/x-close-icon.svg"
+              alt="X"
+              aria-label="Close the terminal icon"
+            />
+          </button>
+        </div>
+        {isScreenWidthDisclaimerOpen && (
+          <div className="absolute w-full h-full bg-black/90 text-white z-30 flex flex-col gap-6 items-center justify-center">
+            <p className="text-white font-semibold max-w-prose text-center px-4">
+              Hey there, your device might not be suitable for this feature. You
+              need a pretty wide screen and a keyboard for this feature to work
+              properly!
+            </p>
+            <AccentButton onClick={() => setScreenWidthDisclaimerOpen(false)}>
+              I understand.
+            </AccentButton>
+          </div>
+        )}
+        <div
+          ref={terminalContainerRef}
+          className="h-auto bg-terminal-bg flex flex-col px-5 py-2 pb-3 overflow-y-auto custom-scrollbar cli-output"
+        >
+          <pre
+            id="TERMINAL_CONTENT"
+            aria-label="Terminal content output"
+            className="!text-white"
+            ref={terminalRef}
+          ></pre>
+          <TerminalInput
+            inputRef={inputRef}
+            pushCommand={pushCommand}
+            setValue={setCommandVal}
+            value={commandVal}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

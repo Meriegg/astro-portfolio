@@ -22,16 +22,20 @@ const { title, description } = Astro.props;
       description={description ||
         "Hello there! I'm Mario, a 15 year old full stack developer based in Romania."}
     />
-    <meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
+    <meta charset="UTF-8" /><meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="thumbnail"
+      content="http://mariodev.vercel.app/website-preview.png"
     />
-    <meta name="thumbnail" content="http://mariodev.vercel.app/website-preview.png" />
   </head>
 
-  <body class="overflow-x-hidden">
+  <body class="overflow-x-hidden antialiased">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDCXDLTXBN"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDCXDLTXBN"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {

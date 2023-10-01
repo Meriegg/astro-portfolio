@@ -1,8 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "@src/components/Footer.astro";
 import ContactComponent from "../components/Home/Contact.astro";
 ---
 
-<Layout title="MarioDev | Contact" description="Get my contact information on this page!">
-  <ContactComponent />
+<Layout
+  title="MarioDev | Contact"
+  description="Get my contact information on this page!"
+>
+  <ContactComponent hasMarginTop={false} />
+  <Footer />
 </Layout>

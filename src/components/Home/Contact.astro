@@ -1,5 +1,6 @@
 ---
 import ContactCopy from "./ContactCopy";
+import Footer from "../Footer.astro";
 import {
   CONTACT_EMAIL,
   EMAIL_LINK,
@@ -8,9 +9,18 @@ import {
   INSTAGRAM_USERNAME,
   TWITTER_LINK,
 } from "@mariodev14/socials";
+
+interface Props {
+  hasMarginTop?: boolean;
+}
+
+const { hasMarginTop } = Astro.props;
 ---
 
-<section id="contact_me" class="sectionPadding mt-[60vh] relative">
+<section
+  id="contact_me"
+  class={`sectionPadding ${hasMarginTop ? "mt-[60vh]" : "mt-[10vh]"} relative`}
+>
   <h1 class="text-6xl font-bold tracking-normal">Contact Me</h1>
 
   <div class="flex flex-col gap-8 mt-12">
